@@ -5,13 +5,15 @@ import {
   Route
 } from 'react-router-dom';
 import Home from './pages/Home';
+import AutoRoutePlanner from './pages/AutoRoutePlanner'; 
 
 function App() {
-  return (    
+  return (
     <Router>
       <div className="App">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/auto-route-planner" element={<AutoRoutePlanner />} /> 
         </Routes>
       </div>
     </Router>

@@ -31,7 +31,7 @@ function Home() {
                 <option value="0.5km">0.5km</option>
                 <option value="1km">1km</option>
                 <option value="1.5km">1.5km</option>
-                <option value="2km">2km</option>
+                {/* <option value="2km">2km</option> */}
               </select>
             </div>
           </div>

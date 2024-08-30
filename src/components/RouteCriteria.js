@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './RouteCriteria.css';
 
-const RouteOptions = () => {
+const RouteCriteria = ({ allCategories, setCriteria, setSelectedCategories }) => {
   const [activeTab, setActiveTab] = useState(1);
-  const [priority, setPriority] = useState('거리');
+  const [priority, setPriority] = useState('distance');
   const [conditions, setConditions] = useState({
     1: { category: '' },
     2: { category: '' },
@@ -12,15 +12,13 @@ const RouteOptions = () => {
   const [inputValue, setInputValue] = useState('');
   const [suggestions, setSuggestions] = useState([]);
 
-  const allCategories = [
-    '한식', '퓨전한식', '곱창', '막창', '국수', '육류', '고기', '추어', '칼국수', '냉면', '설렁탕', '삼계탕', '족발', '보쌈', '삼겹살', 
-    '한식뷔페', '찌개', '전골', '불고기', '두루치기', '한정식', '죽', '해장국', '국밥', '곰탕', '쌈밥', '양꼬치', '중국요리', '중식', 
-    '퓨전중식', '일식', '참치회', '샤브샤브', '철판요리', '일본식주점', '초밥', '롤', '돈까스,우동', '찌개', '전골', '일식집', '일본식라면', 
-    '햄버거', '스테이크', '립', '피자', '분식', '국수', '순대', '떡볶이', '칵테일바', '와인바', '술집', '호프', '요리주점', '일본식주점', 
-    '실내포장마차', '해산물', '해물', '생선', '매운탕', '해물탕', '굴', '전복', '회', '복어', '게', '대게', '뷔페', '퓨전일식', '채식뷔페', 
-    '해산물뷔페', '고기뷔페', '샌드위치', '간식', '아시아음식', '닭요리', '프랑스음식', '샐러드', '이탈리안', '스페인음식', '주먹밥', 
-    '오리', '도시락', '닭강정', '치킨', '패스트푸드', '기사식당', '철판요리', '간식', '도시락', '퓨전요리', '패밀리레스토랑', '샐러드', '샤브샤브'
-  ];
+  useEffect(() => {
+    setCriteria(priority);
+    const selectedCategories = Object.values(conditions)
+      .map(condition => condition.category)
+      .filter(category => category !== '');
+    setSelectedCategories(selectedCategories);
+  }, [priority, conditions, setCriteria, setSelectedCategories]);
 
   const handleTabClick = (tabNumber) => {
     setActiveTab(tabNumber);
@@ -85,6 +83,12 @@ const RouteOptions = () => {
     { name: '당구장', icon: require('../assets/category-icons/billiards.png') }
   ];
 
+  const priorityOptions = [
+    { display: '거리', value: 'distance' },
+    { display: 'Kakao평점', value: 'kakaoGrade' },
+    { display: 'NolGoat평점', value: 'nolgoatGrade' }
+  ];
+
   const renderTabText = (tabNumber) => {
     const { category } = conditions[tabNumber];
     return (
@@ -111,13 +115,13 @@ const RouteOptions = () => {
         <div className="priority-selector">
           <label className="condition-title-label">Priority</label>
           <div className="options">
-            {['거리', 'Kakao평점', 'NolGoat평점'].map((option, index) => (
+            {priorityOptions.map((option, index) => (
               <button
                 key={index}
-                className={`option ${priority === option ? 'selected' : ''}`}
-                onClick={() => setPriority(option)}
+                className={`option ${priority === option.value ? 'selected' : ''}`}
+                onClick={() => setPriority(option.value)}
               >
-                {option}
+                {option.display}
               </button>
             ))}
           </div>
@@ -171,7 +175,7 @@ const RouteOptions = () => {
                       key={index}
                       className={`option ${conditions[tabNumber].category === category.name ? 'selected' : ''}`}
                       onClick={() => handleConditionChange(tabNumber, 'category', category.name)}
-                      disabled={!isCategorySelectable(tabNumber)}
+                      disabled={!allCategories.includes(category.name) || !isCategorySelectable(tabNumber)}
                     >
                       <img src={category.icon} alt={category.name} className="category-icon" />
                       <span>{category.name}</span>
@@ -187,7 +191,7 @@ const RouteOptions = () => {
                       key={index}
                       className={`option ${conditions[tabNumber].category === category.name ? 'selected' : ''}`}
                       onClick={() => handleConditionChange(tabNumber, 'category', category.name)}
-                      disabled={!isCategorySelectable(tabNumber)}
+                      disabled={!allCategories.includes(category.name) || !isCategorySelectable(tabNumber)}
                     >
                       <img src={category.icon} alt={category.name} className="category-icon" />
                       <span>{category.name}</span>
@@ -203,4 +207,4 @@ const RouteOptions = () => {
   );
 };
 
-export default RouteOptions;
+export default RouteCriteria;

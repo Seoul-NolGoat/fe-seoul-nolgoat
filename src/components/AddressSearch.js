@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import API_BASE_URL from '../config.js'; 
 import './AddressSearch.css';
 import gpsIcon from '../assets/address-icons/gps.png';
 import searchIcon from '../assets/address-icons/search.png';
+import axiosInstance from '../services/axiosInstance';
 
-const AddressSearch = ({ setAddress }) => {
+
+const AddressSearch = ({ setAddress, setCoordinates }) => {
   const [address, setAddressState] = useState('');
 
   const handleAddress = (data) => {
@@ -23,7 +23,8 @@ const AddressSearch = ({ setAddress }) => {
     }
 
     setAddressState(fullAddress);
-    setAddress(fullAddress);  // 상위 컴포넌트로 주소 전달
+    setAddress(fullAddress);
+    setCoordinates(`${data.y},${data.x}`);
   };
 
   const sample4_execDaumPostcode = () => {
@@ -38,7 +39,7 @@ const AddressSearch = ({ setAddress }) => {
         async (position) => {
           const { latitude, longitude } = position.coords;
           try {
-            const response = await axios.get(`${API_BASE_URL}/kakao/map/lot-address`, {
+            const response = await axiosInstance.get(`/kakao/map/lot-address`, {
               params: {
                 latitude,
                 longitude
@@ -49,6 +50,7 @@ const AddressSearch = ({ setAddress }) => {
               const address = response.data;
               setAddressState(address);
               setAddress(address);
+              setCoordinates(`${latitude},${longitude}`);
             } else if (response.status === 404) {
               alert('위치를 찾을 수 없습니다.');
             } else {

@@ -1,8 +1,10 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import defaultProfile from "../assets/default-profile.png";
 import "./LoginHeader.css";
+import { UserContext } from '../contexts/UserContext'; 
 
-const Header = ({ user, handleLogout, openLoginModal, openRegisterModal, handleHostModeClick }) => {
+const Header = ({ handleLogout, openLoginModal, openRegisterModal, handleHostModeClick }) => {
+  const { userProfile } = useContext(UserContext); 
   const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef(null);
   const profileRef = useRef(null);
@@ -35,14 +37,22 @@ const Header = ({ user, handleLogout, openLoginModal, openRegisterModal, handleH
         <a href="/">Seoul NolGoat</a>
       </div>
       <div className="profile-container">
-        {user && <span className="welcome-message"> <span className="bold-name">{user.name}</span> 님</span>}
+        {userProfile && (
+          <span className="welcome-message">
+            <span className="bold-name">{userProfile.nickname}</span> 님
+          </span>
+        )}
         <div className="nav-tab-container" onClick={handleProfileClick} ref={profileRef}>
           <div className="hamburger-menu">
             <div className="bar"></div>
             <div className="bar"></div>
             <div className="bar"></div>
           </div>
-          <img src={user?.profileImg || defaultProfile} alt="Profile" className="profile-image" />
+          <img
+            src={userProfile?.profileImage || defaultProfile}
+            alt="Profile"
+            className="profile-image"
+          />
         </div>
       </div>
       {showMenu && (
@@ -54,11 +64,8 @@ const Header = ({ user, handleLogout, openLoginModal, openRegisterModal, handleH
             left: profileRef.current.getBoundingClientRect().left + window.scrollX - 20,
           }}
         >
-          {user ? (
+          {userProfile ? (
             <>
-              <button className="menu-button" onClick={handleHostModeClick}>
-                호스트 모드
-              </button>
               <button className="menu-button" onClick={handleLogout}>
                 로그아웃
               </button>

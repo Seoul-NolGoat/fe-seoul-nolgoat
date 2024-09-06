@@ -1,0 +1,19 @@
+.draggable-star-rating-container {
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .draggable-star-rating-star {
+    font-size: 1.5rem;
+    color: #ddd;
+    transition: color 0.2s;
+  }
+  
+  .draggable-star-rating-filled {
+    color: #f15b5b;
+  }
+  

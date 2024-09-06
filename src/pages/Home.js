@@ -33,7 +33,7 @@ function Home() {
     }
   };
 
-  const handleSearch = async () => {
+  const handleAutoRouteSearch = async () => {
     // 사용자가 로그인되지 않은 경우
     if (!userProfile) {
       alert('로그인 후 이용해주세요.');
@@ -76,6 +76,10 @@ function Home() {
     }
   };
 
+  const handleInteractiveRouteSearch = async () => {
+    alert("아직 준비 중인 기능입니다")
+  };
+
   return (
     <div className="home-container">
       <header className="header">
@@ -103,7 +107,7 @@ function Home() {
         <div
           className="custom-card"
           style={{ cursor: "pointer" }}
-          onClick={handleSearch}
+          onClick={handleAutoRouteSearch}
         >
           <img
             src={require('../assets/home-icons/auto-route-planner.png')}
@@ -115,7 +119,10 @@ function Home() {
             <p className="card-desc-text">Description</p>
           </div>
         </div>
-        <div className="custom-card" style={{ cursor: "pointer" }}>
+        <div className="custom-card" 
+        style={{ cursor: "pointer" }}
+        onClick={handleInteractiveRouteSearch}
+        >
           <img
             src={require('../assets/home-icons/Interactive-route-planner.png')}
             className="card-img"

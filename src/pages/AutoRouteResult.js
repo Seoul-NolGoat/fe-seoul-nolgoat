@@ -5,6 +5,7 @@ import StarRating from '../components/StarRating';
 import walkingIcon from '../assets/route-result-icons/walking.png';
 import kakaoIcon from '../assets/route-result-icons/kakao.png';
 import nolgoatIcon from '../assets/route-result-icons/nolgoat.png';
+import { Link } from 'react-router-dom';
 
 const { kakao } = window;
 
@@ -195,7 +196,7 @@ const AutoRouteResult = () => {
                         </div>
                       </>
                     )}
-                    <div className="store-details">상세보기</div>
+                    <Link to={`/store/${store.id}`} className="store-details">상세보기</Link>
                   </div>
                 ))}
               </div>

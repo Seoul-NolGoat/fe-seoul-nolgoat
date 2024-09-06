@@ -57,7 +57,7 @@ const RouteCriteria = ({ allCategories, setCriteria, setSelectedCategories }) =>
     { name: '한식', icon: require('../assets/category-icons/korean.png') },
     { name: '중식', icon: require('../assets/category-icons/chinese.png') },
     { name: '일식', icon: require('../assets/category-icons/japanese.png') },
-    { name: '고기·구이', icon: require('../assets/category-icons/grilled-meat.png') },
+    { name: '육류·고기', icon: require('../assets/category-icons/grilled-meat.png') },
     { name: '족발·보쌈', icon: require('../assets/category-icons/bossam.png') },
     { name: '치킨', icon: require('../assets/category-icons/chicken.png') },
     { name: '햄버거', icon: require('../assets/category-icons/burger.png') },

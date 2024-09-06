@@ -92,7 +92,7 @@
     margin-top: 10px;
     border: none;
     border-radius: 4px;
-    background-color: #FAE100;
+    background-color: #ffe609;
     color: #371d1e;
     font-size: 16px;
     cursor: pointer;
@@ -103,6 +103,29 @@
   
   .kakao-icon {
     background-image: url("../assets/login-icons/kakao-logo.png");
+    background-size: contain;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+
+  .google-login {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+    color: #000000;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .google-icon {
+    background-image: url("../assets/login-icons/google-logo.png");
     background-size: contain;
     width: 20px;
     height: 20px;

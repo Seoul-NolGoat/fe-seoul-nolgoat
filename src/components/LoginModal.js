@@ -30,16 +30,20 @@ const LoginModal = ({ closeModal }) => {
     }
   };
 
-  const handleGithubLogin = () => {
-    // GitHub OAuth 로그인 페이지로 리다이렉션
-    //window.location.href = API_BASE_URL + "/login/oauth/github";
-    alert(document.cookie)
-  };
-
   const handleKakaoLogin = () => {
     // Kakao OAuth 로그인 페이지로 리다이렉션
     window.location.href = "http://localhost:8080/oauth2/authorization/kakao";
   };
+
+  const handleGoogleLogin = () => {
+    // Google OAuth 로그인 페이지로 리다이렉션
+    window.location.href = "http://localhost:8080/oauth2/authorization/google";
+  };
+
+  //const handleGithubLogin = () => {
+    // GitHub OAuth 로그인 페이지로 리다이렉션
+    //window.location.href = API_BASE_URL + "/login/oauth/github";
+  //};
 
   return (
     <div className="modal-background">
@@ -79,10 +83,14 @@ const LoginModal = ({ closeModal }) => {
           <span className="kakao-icon" />
           Login with Kakao
         </button>
-        <button className="github-login" onClick={handleGithubLogin}>
+        <button className="google-login" onClick={handleGoogleLogin}>
+          <span className="google-icon" />
+          Login with Google
+        </button>
+        {/* <button className="github-login" onClick={handleGithubLogin}>
           <span className="github-icon" />
           Login with GitHub
-        </button>
+        </button> */}
       </div>
     </div>
   );

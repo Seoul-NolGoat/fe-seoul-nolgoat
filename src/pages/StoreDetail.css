@@ -1,0 +1,227 @@
+.store-detail-container-wrapper {
+  background-color: #f0f0f0; 
+  padding: 20px 0; 
+}
+
+.store-detail-container {
+  background-color: #ffffff;
+  padding: 20px 40px 20px 40px;
+  width: 750px;
+  margin: 0 auto;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); 
+  border-radius: 8px;
+}
+
+.store-detail .store-name {
+  text-align: center;
+  font-size: 1.8rem;
+  margin: 20px 0px 15px 0px;
+  text-decoration: underline; 
+  text-decoration-color: #e2e2e2; 
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 13px; 
+}
+
+.store-detail .store-content {
+  display: flex;
+  flex-direction: column; 
+}
+
+.store-detail .store-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left; 
+}
+
+.store-detail .info-item {
+  display: flex;
+  align-items: flex-start; 
+}
+
+.store-detail .info-item img.icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+}
+
+.store-detail .info-item div {
+  text-align: left;
+}
+
+.store-detail .info-item .address-line {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px; 
+}
+
+.store-detail .info-item .address-line span:first-child {
+  font-size: 0.8rem;
+  color: #888; 
+}
+
+.store-detail .info-item .separator {
+  display: inline-block;
+  width: 1px;
+  height: 10px;
+  background-color: #ccc; 
+  margin: 0 8px; 
+}
+
+.store-detail .info-item span {
+  font-size: 0.9rem;
+  line-height: 1.2;
+}
+
+.store-detail .store-map {
+  margin-top: 35px; 
+  height: 350px;
+  width: 100%; 
+  border-radius: 13px;
+}
+
+.store-grades {
+  display: flex;
+  justify-content: center;
+  gap: 25px; 
+  margin-bottom: 50px;
+  color: #f15b5b;
+  font-weight: 500;
+}
+
+.grade-item {
+  display: flex;
+  align-items: center;
+  gap: 8px; 
+}
+
+.grade-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.review-summary {
+  margin: 50px 0px 10px 0px;
+  padding: 7px 0px 7px 0px;
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-top: 1.5px solid #ddd;
+  border-bottom: 1.5px solid #ddd;
+}
+
+.review-star {
+  color: black; 
+  margin: 0px 5px 5px 10px;
+  font-size: 1.5rem;
+}
+
+.review-rating {
+  margin-right: 5px;
+}
+
+.review-count {
+  color: #7c7c7c;
+  font-size: 1rem;
+}
+
+.reviews-section {
+  margin: 30px 15px 0px 15px;
+  padding: 0px 30px 0px 30px;
+}
+
+.review-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eaeaea; 
+  position: relative; /* 부모 요소에 상대적 위치를 설정 */
+}
+
+.reviews-section .review-item:last-child {
+  border-bottom: none; /* 마지막 리뷰 항목에 선이 나타나지 않도록 설정 */
+}
+
+.review-profile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.review-content {
+  flex: 1;
+  text-align: left; 
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+}
+
+.review-nickname {
+  font-weight: bold;
+}
+
+.review-separator {
+  width: 1px;
+  height: 11px;
+  background-color: #ccc; 
+  margin: 0 8px; 
+}
+
+.review-date {
+  margin-bottom: 2px;
+  font-size: 0.8rem; 
+  color: #999; 
+}
+
+.review-image {
+  width: 100px;
+  margin-top: 10px;
+  border-radius: 8px;
+}
+
+.review-text {
+  margin-top: 10px;
+  text-align: left; 
+}
+
+.review-options {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.more-icon {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.review-options-menu {
+  position: absolute;
+  left: 28px;
+  bottom: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  z-index: 1;
+}
+
+.delete-review-button {
+  width: 55px;
+  background-color: transparent;
+  border: none;
+  color: #f00;
+  padding: 5px 10px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.delete-review-button:hover {
+  background-color: #f8f8f8;
+  border-radius: 5px;
+}

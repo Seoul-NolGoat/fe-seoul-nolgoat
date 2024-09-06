@@ -9,6 +9,7 @@ import LoginSuccess from './pages/LoginSuccess';
 import { useState } from 'react';
 import { UserProvider } from './contexts/UserContext'; 
 import authService from './services/authService';
+import StoreDetail from './pages/StoreDetail';
 
 function App() {
   const [isLoginModalOpen, setLoginModalOpen] = useState(false); 
@@ -48,6 +49,7 @@ function App() {
             <Route path="/auto-route-planner" element={<AutoRoutePlanner />} />
             <Route path="/auto-route-result" element={<AutoRouteResult />} />
             <Route path="/loginSuccess" element={<LoginSuccess />} />
+            <Route path="/store/:id" element={<StoreDetail />} />
           </Routes>
           {isLoginModalOpen && <LoginModal closeModal={closeLoginModal} />} 
         </div>

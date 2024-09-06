@@ -1,0 +1,103 @@
+.review-form {
+    max-width: 650px;
+    margin: 20px auto;
+    padding: 12px 15px 8px 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .review-header {
+    margin-bottom: 5px;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .review-form-profile-image {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .review-username {
+    font-weight: bold;
+    font-size: 1rem;
+  }
+  
+  .review-textarea {
+    width: 90%;
+    height: 70px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    resize: none;
+    font-size: 14px;
+    background-color: #F7F8FA;
+    margin-bottom: 10px;
+  }
+  
+  .form-footer {
+    width: 93%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .file-upload-label {
+    width: 20px;
+    margin: 0px 0px 10px 0px;
+    cursor: pointer;
+    align-items: center;
+  }
+  
+  .file-upload-icon {
+    font-size: 1.2rem;
+    color: #848484;
+  }
+  
+  .file-info {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin: 0px 5px 0px 2px;
+  }
+  
+  .file-name {
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    color: #333;
+  }
+  
+  .remove-file-icon {
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: #ff4d4f;
+    cursor: pointer;
+  }
+  
+  .submit-button {
+    margin-left: 10px;
+    background-color: #4285f4;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .submit-button:hover {
+    background-color: #357ae8;
+  }
+  
+  .error-message {
+    color: #ff4d4f;
+    font-size: 0.9rem;
+    margin: 0;
+  }
+  

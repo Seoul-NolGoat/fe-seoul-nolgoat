@@ -1,8 +1,10 @@
+// src/App.js
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import AutoRoutePlanner from './pages/AutoRoutePlanner';
 import AutoRouteResult from './pages/AutoRouteResult';
+import Favorites from './pages/Favorites'; // 즐겨찾기 페이지 임포트
 import Header from './components/LoginHeader';
 import LoginModal from './components/LoginModal'; 
 import LoginSuccess from './pages/LoginSuccess';
@@ -35,7 +37,7 @@ function App() {
   };
 
   return (
-    <UserProvider> {/* UserProvider로 앱을 감싸서 전역 상태 제공 */}
+    <UserProvider> 
       <Router>
         <div className="App">
           <Header 
@@ -48,6 +50,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/auto-route-planner" element={<AutoRoutePlanner />} />
             <Route path="/auto-route-result" element={<AutoRouteResult />} />
+            <Route path="/favorites" element={<Favorites />} />
             <Route path="/loginSuccess" element={<LoginSuccess />} />
             <Route path="/store/:id" element={<StoreDetail />} />
           </Routes>

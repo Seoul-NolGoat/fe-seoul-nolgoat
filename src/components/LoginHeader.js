@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import defaultProfile from "../assets/default-profile.png";
 import "./LoginHeader.css";
 import { UserContext } from '../contexts/UserContext'; 
@@ -8,6 +9,7 @@ const Header = ({ handleLogout, openLoginModal, openRegisterModal, handleHostMod
   const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef(null);
   const profileRef = useRef(null);
+  const navigate = useNavigate();
 
   const handleProfileClick = () => {
     setShowMenu(!showMenu);
@@ -30,6 +32,10 @@ const Header = ({ handleLogout, openLoginModal, openRegisterModal, handleHostMod
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  const handleFavoritesClick = () => {
+    navigate("/favorites");
+  };
 
   return (
     <header className="login-header">
@@ -66,6 +72,9 @@ const Header = ({ handleLogout, openLoginModal, openRegisterModal, handleHostMod
         >
           {userProfile ? (
             <>
+              <button className="menu-button" onClick={handleFavoritesClick}>
+                즐겨찾기
+              </button>
               <button className="menu-button" onClick={handleLogout}>
                 로그아웃
               </button>

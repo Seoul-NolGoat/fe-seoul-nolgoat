@@ -8,12 +8,17 @@ import websiteIcon from '../assets/store-detail-icons/link.png';
 import categoryIcon from '../assets/store-detail-icons/categories.png';
 import kakaoIcon from '../assets/route-result-icons/kakao.png';
 import nolgoatIcon from '../assets/route-result-icons/nolgoat.png';
+import starIcon from '../assets/store-detail-icons/star.png';
+import starIconBlue from '../assets/store-detail-icons/star-blue.png';
+import distanceIcon from '../assets/store-detail-icons/road-view.png';
+import shareIcon from '../assets/store-detail-icons/share.png';
+import moreIcon from '../assets/store-detail-icons/three-dots.png';
 import StarRating from '../components/StarRating';
 import ReviewForm from '../components/ReviewForm';
 import { UserContext } from '../contexts/UserContext';
-import moreIcon from '../assets/store-detail-icons/three-dots.png';
 import Lightbox from 'react-image-lightbox'; 
-import 'react-image-lightbox/style.css';    
+import 'react-image-lightbox/style.css'; 
+import RoadViewModal from '../components/RoadViewModal'; 
 
 const { kakao } = window;
 
@@ -23,24 +28,49 @@ const StoreDetail = () => {
   const [store, setStore] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [activeReviewOptions, setActiveReviewOptions] = useState(null);
-  const [isLightboxOpen, setIsLightboxOpen] = useState(false); 
-  const [selectedImage, setSelectedImage] = useState(''); 
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState('');
+  const [isRoadViewModalOpen, setIsRoadViewModalOpen] = useState(false);
+  const [isBookmarked, setIsBookmarked] = useState(false);
 
   useEffect(() => {
     const fetchStoreDetails = async () => {
+      if (!userProfile || !userProfile.userId) return;
+  
       setIsLoading(true);
       try {
-        const response = await axiosInstance.get(`/stores/${id}`);
-        setStore(response.data);
+        const [storeResponse, bookmarkResponse] = await Promise.all([
+          axiosInstance.get(`/stores/${id}`),
+          axiosInstance.get(`/bookmarks/${userProfile.userId}/${id}`)
+        ]);
+        setStore(storeResponse.data);
+        setIsBookmarked(bookmarkResponse.data);
       } catch (error) {
-        console.error('Error fetching store details:', error);
+        console.error('Error fetching store details or bookmark status:', error);
       } finally {
         setIsLoading(false);
       }
     };
-
+  
     fetchStoreDetails();
-  }, [id]);
+  }, [id, userProfile]);
+
+  const handleBookmarkToggle = async () => {
+    try {
+      if (isBookmarked) {
+        await axiosInstance.delete(`/bookmarks/${userProfile.userId}/${id}`);
+        setIsBookmarked(false);
+        alert('즐겨찾기에서 삭제되었습니다.');
+      } else {
+        await axiosInstance.post(`/bookmarks/${userProfile.userId}/${id}`);
+        setIsBookmarked(true);
+        alert('즐겨찾기에 저장되었습니다.'); 
+      }
+    } catch (error) {
+      console.error('Error toggling bookmark:', error);
+      alert('북마크 처리 중 오류가 발생했습니다.');
+    }
+  };
 
   const handleReviewSubmit = (review) => {
     console.log('리뷰 제출:', review);
@@ -83,14 +113,36 @@ const StoreDetail = () => {
     }
   }, [store]);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
   const openLightbox = (imageUrl) => {
     setSelectedImage(imageUrl);
     setIsLightboxOpen(true);
   };
+
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: store.name,
+        text: `Check out ${store.name}! It has an average rating of ${store.nolgoatAverageGrade || 'N/A'} stars.`,
+        url: window.location.href,
+      })
+      .then(() => console.log('공유 성공'))
+      .catch((error) => console.error('공유 실패:', error));
+    } else {
+      alert('이 브라우저에서는 공유 기능이 지원되지 않습니다.');
+    }
+  };
+
+  const handleRoadViewToggle = () => {
+    setIsRoadViewModalOpen(true);
+  };
+
+  const closeRoadViewModal = () => {
+    setIsRoadViewModalOpen(false);
+  };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="store-detail-container-wrapper">
@@ -109,6 +161,26 @@ const StoreDetail = () => {
                   <span>{store.nolgoatAverageGrade !== undefined ? store.nolgoatAverageGrade : 'N/A'}</span>
                 </div>
               </div>
+              
+              <div className="store-actions">
+                <div className={`action-item ${isBookmarked ? 'bookmarked' : ''}`} onClick={handleBookmarkToggle}>
+                  <img 
+                    src={isBookmarked ? starIconBlue : starIcon} 
+                    alt="저장" 
+                    className="action-icon" 
+                  />
+                  <span>저장</span>
+                </div>
+                <div className="action-item" onClick={handleRoadViewToggle}>
+                  <img src={distanceIcon} alt="거리뷰" className="action-icon" />
+                  <span>거리뷰</span>
+                </div>
+                <div className="action-item" onClick={handleShare}>
+                  <img src={shareIcon} alt="공유" className="action-icon" />
+                  <span>공유</span>
+                </div>
+              </div>
+
               <div className="store-content">
                 <div className="store-info">
                   <div className="info-item">
@@ -226,6 +298,14 @@ const StoreDetail = () => {
         <Lightbox
           mainSrc={selectedImage}
           onCloseRequest={() => setIsLightboxOpen(false)}
+        />
+      )}
+
+      {isRoadViewModalOpen && (
+        <RoadViewModal
+          latitude={store.latitude}
+          longitude={store.longitude}
+          onClose={closeRoadViewModal}
         />
       )}
     </div>

@@ -1,0 +1,43 @@
+/* RoadViewModal.css */
+.roadview-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .roadview-modal-content {
+    background: white;
+    padding: 30px 15px 15px 15px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 800px;
+    position: relative;
+  }
+  
+  .roadview-modal-close-button {
+    position: absolute;
+    top: 1px;
+    right: 3px;
+    font-size: 24px; 
+    color: #555; 
+    cursor: pointer;
+    background: transparent;
+    border: none;
+  }
+  
+  .roadview-modal-close-button:hover {
+    color: #000; /* 호버 시 색상 변경 */
+  }
+  
+  .roadview-modal-container {
+    width: 100%;
+    height: 500px;
+  }
+  

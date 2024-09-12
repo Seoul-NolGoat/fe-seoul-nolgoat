@@ -84,7 +84,7 @@
   display: flex;
   justify-content: center;
   gap: 25px; 
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   color: #f15b5b;
   font-weight: 500;
 }
@@ -137,11 +137,11 @@
   margin-bottom: 30px;
   padding-bottom: 10px;
   border-bottom: 1px solid #eaeaea; 
-  position: relative; /* 부모 요소에 상대적 위치를 설정 */
+  position: relative;
 }
 
 .reviews-section .review-item:last-child {
-  border-bottom: none; /* 마지막 리뷰 항목에 선이 나타나지 않도록 설정 */
+  border-bottom: none; 
 }
 
 .review-profile-image {
@@ -224,4 +224,46 @@
 .delete-review-button:hover {
   background-color: #f8f8f8;
   border-radius: 5px;
+}
+
+.store-actions {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 55px;
+  gap: 60px;
+  position: relative;
+}
+
+.action-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #555558;
+  position: relative;
+  cursor: pointer;
+}
+
+.action-item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: -30px; 
+  top: 50%;
+  transform: translateY(-50%);
+  height: 40px;
+  width: 1px;
+  background-color: #F0F0F3;
+}
+
+.action-icon {
+  width: 20px; 
+  height: 20px;
+  margin-bottom: 5px; 
+}
+
+.action-item span {
+  font-size: 0.9rem;
+}
+
+.action-item.bookmarked {
+  color: #007bff;
 }

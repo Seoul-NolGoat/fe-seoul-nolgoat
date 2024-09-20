@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import AutoRoutePlanner from './pages/AutoRoutePlanner';
 import AutoRouteResult from './pages/AutoRouteResult';
-import Favorites from './pages/Favorites'; // 즐겨찾기 페이지 임포트
+import Favorites from './pages/Favorites';
+import Inquiries from './pages/Inquiries';
 import Header from './components/LoginHeader';
 import LoginModal from './components/LoginModal'; 
 import LoginSuccess from './pages/LoginSuccess';
@@ -51,6 +52,7 @@ function App() {
             <Route path="/auto-route-planner" element={<AutoRoutePlanner />} />
             <Route path="/auto-route-result" element={<AutoRouteResult />} />
             <Route path="/favorites" element={<Favorites />} />
+            <Route path="/inquiries" element={<Inquiries />} />
             <Route path="/loginSuccess" element={<LoginSuccess />} />
             <Route path="/store/:id" element={<StoreDetail />} />
           </Routes>

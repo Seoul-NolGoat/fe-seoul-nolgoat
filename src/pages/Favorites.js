@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import './Favorites.css';
 import axiosInstance from '../services/axiosInstance';
 import { UserContext } from '../contexts/UserContext';
-import starIconBlue from '../assets/store-detail-icons/star-blue.png'; // 즐겨찾기 아이콘
-import moreIcon from '../assets/store-detail-icons/three-dots.png'; // 세 점 아이콘
+import starIconBlue from '../assets/store-detail-icons/star-blue.png'; 
+import moreIcon from '../assets/store-detail-icons/three-dots.png'; 
 import { useNavigate } from 'react-router-dom';
 
 const Favorites = () => {
@@ -11,7 +11,7 @@ const Favorites = () => {
   const [bookmarkedStores, setBookmarkedStores] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('ALL'); // 선택된 카테고리 상태
   const [showOptions, setShowOptions] = useState(null); // 어떤 store의 옵션 메뉴를 보여줄지 상태 관리
-  const navigate = useNavigate(); // useNavigate 훅 사용
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (userProfile) {

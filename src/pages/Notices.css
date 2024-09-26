@@ -1,0 +1,342 @@
+/* .notices-container-wrapper {
+    background-color: #f0f0f0;
+    padding: 20px 0;
+} */
+
+.notices-container {
+    background-color: #ffffff;
+    padding: 0px 40px;
+    width: 750px;
+    min-height: calc(100vh - 260px);
+    margin: 0 auto;
+    /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); */
+    border-radius: 8px;
+}
+
+/* 제목 스타일 */
+.notices-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 25px;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+/* 문의사항 목록 테이블 */
+.notices-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #ffffff;
+}
+
+.notices-table th {
+    padding: 12px 8px;
+    text-align: left;
+    border-bottom: 1.5px solid #808080;
+    background-color: #ffffff;
+    font-weight: bold;
+    font-size: 15px;
+    color: #333;
+}
+
+.notices-table td {
+    padding: 15px 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+    height: 40px;
+}
+
+.notices-table tbody tr:first-child {
+    border-top: 1px solid #ddd;
+}
+
+.notices-table th:nth-child(1), .notices-table td:nth-child(1) { width: 5%; text-align: center; padding-left: 13px;}
+.notices-table th:nth-child(2), .notices-table td:nth-child(2) { width: 65%; font-size: 17px; font-weight: bold; padding-left: 10px; }
+.notices-table th:nth-child(3), .notices-table td:nth-child(3) { width: 15%; text-align: center; }
+.notices-table th:nth-child(4), .notices-table td:nth-child(4) { width: 15%; text-align: center; }
+
+.notices-table td:nth-child(1),
+.notices-table td:nth-child(3),
+.notices-table td:nth-child(4){
+    color: #808080;
+}
+
+.notices-table tr:hover {
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+.eye-icon {
+    width: 14px; 
+    height: 14px; 
+    margin-right: 5px;
+    margin-bottom: 3px;
+    vertical-align: middle; 
+}
+
+.new-icon {
+    width: 16px; 
+    height: 16px; 
+    margin-left: 10px;
+    margin-bottom: 5px;
+    vertical-align: middle; 
+}
+
+/* 버튼 스타일 (중복된 버튼 스타일 통합) */
+.notice-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 7px 10px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.notice-button:hover {
+    background-color: #0056b3;
+}
+
+.notice-cancel-button {
+    background-color: #a7a7a7;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 7px 10px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.notice-cancel-button:hover {
+    background-color: #777777;
+}
+
+.notice-delete-button {
+    background-color: #ff8b8b;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 7px 10px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.notice-delete-button:hover {
+    background-color: #bc5c5c;
+}
+
+.write-button-wrapper {
+    margin-top: 15px;
+    padding-right: 25px;
+    text-align: right;
+}
+
+/* NoticeDetail 및 NoticeForm 스타일 */
+.notice-detail, .notice-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 0px 20px 20px 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+
+/* NoticeForm의 개별 항목 */
+.notice-form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.notice-form label {
+    font-weight: bold;
+    color: #333;
+}
+
+.notice-form input[type="text"],
+.notice-form textarea {
+    width: 97%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f9f7f7;
+    color: #333;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+}
+
+.notice-form textarea {
+    min-height: 150px;
+    resize: none;
+}
+
+/* 스위치 스타일 */
+.switch-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    margin-top: 17px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider-text {
+    text-align: left;
+    font-size: 15px;
+    font-weight: bold;
+    transition: color 0.4s ease; 
+}
+
+.slider-text.public {
+    color: #b0b0b0; 
+}
+
+.slider-text.private {
+    color: #ff8b8b; 
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #ff8b8b;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+.slider.round {
+    border-radius: 20px;
+}
+
+
+/* NoticeForm 버튼 스타일 */
+.notice-form-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+  }
+  
+.right-buttons {
+    display: flex;
+    gap: 8px; 
+}
+
+/* NoticeDetail 테이블 스타일 */
+.notice-detail-container {
+    padding: 5px 20px 20px 20px;
+    border-radius: 8px;
+}
+
+.notice-detail-table {
+    width: 100%;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+    font-size: 14px;
+    table-layout: fixed;
+}
+
+.notice-detail-table th, 
+.notice-detail-table td {
+    width: 16.66%;
+    padding: 5px 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.notice-detail-table th {
+    background-color: #e5eaf0;
+    font-weight: 500;
+}
+
+.notice-detail-table td {
+    background-color: #f7f9fc;
+}
+
+/* 제목 스타일 */
+.notice-title {
+    padding: 15px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #ddd;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 15px;
+    text-align: left;
+    font-size: 22px;
+}
+
+/* 본문 스타일 */
+.notice-content {
+    padding: 15px;
+    background-color: #ffffff;
+    border: 0px solid #ddd;
+    border-radius: 4px;
+    white-space: pre-wrap;
+    text-align: left;
+    line-height: 1.7;
+}
+
+
+.mdeditor {
+    width: 100%;
+    height: 500px;
+}
+
+/* 마크다운 텍스트 스타일 조정 */
+.notice-content p {
+    line-height: 1.5; 
+    margin: 0;
+  }
+  
+  .notice-content h1, .notice-content h2, .notice-content h3 {
+    line-height: 1; 
+    margin: 0; 
+  }
+  
+  .notice-content ul, .notice-content ol {
+    line-height: 1; 
+    margin: 0;
+  }
+  

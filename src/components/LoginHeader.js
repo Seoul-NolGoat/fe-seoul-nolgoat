@@ -38,8 +38,8 @@ const Header = ({ handleLogout, openLoginModal, openRegisterModal, handleHostMod
     setShowMenu(false);
   };
 
-  const handleInquiriesClick = () => {
-    navigate("/inquiries");
+  const handleNoticeInquiryClick = () => {
+    navigate("/notice-inquiry-tab");
     setShowMenu(false);
   };
 
@@ -81,8 +81,8 @@ const Header = ({ handleLogout, openLoginModal, openRegisterModal, handleHostMod
               <button className="menu-button" onClick={handleFavoritesClick}>
                 즐겨찾기
               </button>
-              <button className="menu-button" onClick={handleInquiriesClick}>
-                게시판
+              <button className="menu-button" onClick={handleNoticeInquiryClick}>
+                공지사항
               </button>
               <button className="menu-button" onClick={handleLogout}>
                 로그아웃
@@ -90,14 +90,14 @@ const Header = ({ handleLogout, openLoginModal, openRegisterModal, handleHostMod
             </>
           ) : (
             <>
+              <button className="menu-button" onClick={handleNoticeInquiryClick}>
+                공지사항
+              </button>
               <button className="menu-button" onClick={openLoginModal}>
                 로그인
               </button>
               <button className="menu-button" onClick={openRegisterModal}>
                 회원 가입
-              </button>
-              <button className="menu-button" onClick={handleInquiriesClick}>
-                게시판
               </button>
             </>
           )}

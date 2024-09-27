@@ -3,9 +3,12 @@ import '../../pages/Inquiries.css';
 import lockIcon from '../../assets/inquiries-icons/lock.png';
 
 const InquiryList = ({ inquiries, onInquiryClick, onWriteClick }) => {
+
+  const sortedInquiries = [...inquiries].sort((a, b) => new Date(b.createDate) - new Date(a.createDate));
+
   return (
     <div className="inquiries-list">
-      <h2 className="inquiries-title">게시판</h2>
+      {/* <h2 className="inquiries-title">게시판</h2> */}
 
       <p className="inquiries-description">
         NolGoat을 더 나은 서비스로 만들기 위해 여러분의 소중한 의견을 남겨주세요. 
@@ -13,7 +16,7 @@ const InquiryList = ({ inquiries, onInquiryClick, onWriteClick }) => {
         적극적으로 반영하겠습니다. 여러분의 피드백이 NolGoat을 발전시키는 데 큰 도움이 됩니다.
       </p>
 
-      {inquiries.length === 0 ? (
+      {sortedInquiries.length === 0 ? (
         <p className="no-inquiries-message">게시물이 존재하지 않습니다</p>
       ) : (
         <table className="inquiries-table">
@@ -26,7 +29,7 @@ const InquiryList = ({ inquiries, onInquiryClick, onWriteClick }) => {
             </tr>
           </thead>
           <tbody>
-            {inquiries.map((inquiry) => (
+            {sortedInquiries.map((inquiry) => (
               <tr key={inquiry.id} onClick={() => onInquiryClick(inquiry)}>
                 <td>
                   {inquiry.title}

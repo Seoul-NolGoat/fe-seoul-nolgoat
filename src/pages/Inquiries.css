@@ -1,0 +1,320 @@
+/* .inquiries-container-wrapper {
+    background-color: #f0f0f0;
+    padding: 20px 0;
+} */
+
+.inquiries-container {
+    background-color: #ffffff;
+    padding: 0px 40px;
+    width: 750px;
+    min-height: calc(100vh - 260px);
+    margin: 0 auto;
+    /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); */
+    border-radius: 8px;
+}
+
+/* 제목 스타일 */
+.inquiries-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 25px;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.inquiries-description {
+    text-align: left;
+    font-size: 14px;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    line-height: 1.5;
+}
+
+/* 문의사항 목록 테이블 */
+.inquiries-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #ffffff;
+}
+
+.inquiries-table th {
+    padding: 12px 8px;
+    text-align: left;
+    border-bottom: 1.5px solid #808080;
+    background-color: #ffffff;
+    font-weight: bold;
+    font-size: 15px;
+    color: #333;
+}
+
+.inquiries-table td {
+    padding: 15px 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+}
+
+.inquiries-table th:nth-child(1), .inquiries-table td:nth-child(1) { width: 55%; padding-left: 20px; }
+.inquiries-table th:nth-child(2), .inquiries-table td:nth-child(2) { width: 15%; text-align: center; }
+.inquiries-table th:nth-child(3), .inquiries-table td:nth-child(3) { width: 15%; text-align: center; }
+.inquiries-table th:nth-child(4), .inquiries-table td:nth-child(4) { width: 15%; text-align: center; }
+
+.inquiries-table td:nth-child(2),
+.inquiries-table td:nth-child(3),
+.inquiries-table td:nth-child(4) {
+    color: #808080;
+}
+
+.inquiries-table tr:hover {
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+.lock-icon {
+    width: 15px;
+    height: 15px;
+    margin-left: 8px;
+    margin-bottom: 4px;
+    vertical-align: middle;
+}
+
+/* 버튼 스타일 (중복된 버튼 스타일 통합) */
+.inquiry-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 7px 10px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.inquiry-button:hover {
+    background-color: #0056b3;
+}
+
+.inquiry-cancel-button {
+    background-color: #a7a7a7;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 7px 10px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.inquiry-cancel-button:hover {
+    background-color: #777777;
+}
+
+.inquiry-delete-button {
+    background-color: #ff8b8b;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 7px 10px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.inquiry-delete-button:hover {
+    background-color: #bc5c5c;
+}
+
+.write-button-wrapper {
+    margin-top: 15px;
+    padding-right: 25px;
+    text-align: right;
+}
+
+/* InquiryDetail 및 InquiryForm 스타일 */
+.inquiry-detail, .inquiry-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 0 20px 20px 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+
+/* InquiryForm의 개별 항목 */
+.inquiry-form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.inquiry-form label {
+    font-weight: bold;
+    color: #333;
+}
+
+.inquiry-form input[type="text"],
+.inquiry-form textarea {
+    width: 97%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f9f7f7;
+    color: #333;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+}
+
+.inquiry-form textarea {
+    min-height: 150px;
+    resize: none;
+}
+
+/* 스위치 스타일 */
+.switch-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    margin-top: 17px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider-text {
+    text-align: left;
+    font-size: 15px;
+    font-weight: bold;
+    transition: color 0.4s ease; 
+}
+
+.slider-text.public {
+    color: #b0b0b0; 
+}
+
+.slider-text.private {
+    color: #ff8b8b; 
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #ff8b8b;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+.slider.round {
+    border-radius: 20px;
+}
+
+
+/* InquiryForm 버튼 스타일 */
+.inquiry-form-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+  }
+  
+.right-buttons {
+    display: flex;
+    gap: 8px; 
+}
+
+/* InquiryDetail 테이블 스타일 */
+.inquiry-detail-container {
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.inquiry-detail-table {
+    width: 100%;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+    font-size: 14px;
+    table-layout: fixed;
+}
+
+.inquiry-detail-table th, 
+.inquiry-detail-table td {
+    width: 16.66%;
+    padding: 5px 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.inquiry-detail-table th {
+    background-color: #e5eaf0;
+    font-weight: 500;
+}
+
+.inquiry-detail-table td {
+    background-color: #f7f9fc;
+}
+
+/* 제목 스타일 */
+.inquiry-title {
+    padding: 15px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #ddd;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: left;
+    font-size: 18px;
+}
+
+/* 본문 스타일 */
+.inquiry-content {
+    padding: 15px;
+    background-color: #ffffff;
+    border: 0px solid #ddd;
+    border-radius: 4px;
+    white-space: pre-wrap;
+    text-align: left;
+    line-height: 1.7;
+}

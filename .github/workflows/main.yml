@@ -1,32 +1,39 @@
 name: React build
 on: 
-  push: # main Branch에서 push 이벤트가 일어났을 때 실행
+  push:
     branches:
       - main
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout source code. # 레포지토리 체크아웃
+      - name: Checkout source code
         uses: actions/checkout@main
-
-      - name: Cache node modules # node modules 캐싱
+      
+      - name: Cache node modules
         uses: actions/cache@v1
         with:
-          path: node_modules # 프로젝트의 node_modules가 있는 경로
+          path: node_modules
           key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.OS }}-build-
             ${{ runner.OS }}-
-
-      - name: Install Dependencies # 의존 파일 설치
-        run: npm install --legacy-peer-deps # npm install 실행시 --legacy-peer-deps 옵션 추가
-
-      - name: Build # React Build
-        run: npm run build # npm run build를 실행할 경로
-
-      - name: Deploy # S3에 배포
+      
+      - name: Install Dependencies
+        run: npm install --legacy-peer-deps
+      
+      - name: Set up environment variables
+        run: |
+          echo "REACT_APP_KAKAO_MAP_API_KEY=${{ secrets.REACT_APP_KAKAO_MAP_API_KEY }}" >> .env
+          echo "GENERATE_SOURCEMAP=${{ secrets.GENERATE_SOURCEMAP }}" >> .env
+      
+      - name: Build
+        run: npm run build
+        env:
+          REACT_APP_KAKAO_MAP_API_KEY: ${{ secrets.REACT_APP_KAKAO_MAP_API_KEY }}
+          GENERATE_SOURCEMAP: ${{ secrets.GENERATE_SOURCEMAP }}
+      
+      - name: Deploy
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

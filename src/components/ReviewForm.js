@@ -71,12 +71,14 @@ const ReviewForm = ({ onSubmit, userProfileImage, username, userId, storeId }) =
   return (
     <form className="review-form" onSubmit={handleSubmit}>
       <div className="review-header">
-        <div className="user-info">
-          <img src={userProfileImage} alt="User" className="review-form-profile-image" />
-          <span className="review-username">{username}</span>
+        <div className="review-header-content">
+          <div className="user-info">
+            <img src={userProfileImage} alt="User" className="review-form-profile-image" />
+            <span className="review-username">{username}</span>
+          </div>
+          <DraggableStarRating grade={grade} onChange={handleGradeChange} />
         </div>
       </div>
-      <DraggableStarRating grade={grade} onChange={handleGradeChange} />
       <textarea
         className="review-textarea"
         placeholder="리뷰 내용을 작성해주세요."

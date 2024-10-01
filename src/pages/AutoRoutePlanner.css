@@ -20,7 +20,7 @@
 }
 
 .search-auto-route-button {
-  background-color: #7f8c8d; /* 중간 회색 */
+  background-color: #7f8c8d; 
   border: none;
   color: white;
   padding: 12px 28px;
@@ -47,4 +47,34 @@
   background-color: #95a5a6; 
   transform: translateY(1px);
   box-shadow: 0 3px 6px rgba(50, 50, 93, 0.15), 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+
+/* 모바일 크기에 맞는 레이아웃 */
+@media (max-width: 500px) {
+  .auto-route-planner {
+    background-color: #ffffff;
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .search-auto-route-button {
+    background-color: #7f8c8d;
+    border: none;
+    color: white;
+    padding: 9px 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: -13px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  }
 }

@@ -267,3 +267,142 @@
 .action-item.bookmarked {
   color: #007bff;
 }
+
+
+/* 모바일 크기에 맞는 레이아웃 */
+@media (max-width: 500px) {
+  .store-detail-container-wrapper {
+    background-color: #f0f0f0; 
+    padding: 0; 
+  }
+  
+  .store-detail-container {
+    background-color: #ffffff;
+    padding: 5px 20px;
+    width: 100%;
+    margin: 0 auto;
+    box-shadow: none;
+    border-radius: 0px;
+    box-sizing: border-box;
+  }
+  
+  .store-detail .store-name {
+    text-align: center;
+    font-size: 23px;
+    margin: 20px 0px 15px 0px;
+    text-decoration: underline; 
+    text-decoration-color: #e2e2e2; 
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 13px; 
+  }
+  
+  .store-detail .info-item img.icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 7px;
+  }
+  
+  .store-detail .info-item .address-line span:first-child {
+    width: 42px;
+    font-size: 0.8rem;
+    color: #888; 
+  }
+  
+  .store-detail .info-item .address-line span:last-child {
+    width: calc(100% - 42px)
+  }
+  
+  .store-detail .store-map {
+    margin-top: 30px; 
+    height: 300px;
+    width: 100%; 
+    border-radius: 13px;
+  }
+  
+  .store-grades {
+    display: flex;
+    justify-content: center;
+    gap: 20px; 
+    margin-bottom: 20px;
+    color: #f15b5b;
+    font-weight: 500;
+  }
+  
+  .grade-item {
+    display: flex;
+    align-items: center;
+    gap: 6px; 
+    font-size: 15px;
+  }
+  
+  .grade-icon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .review-summary {
+    margin: 35px 0px 10px 0px;
+    padding: 6px 0px;
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-top: 1.5px solid #ddd;
+    border-bottom: 1.5px solid #ddd;
+  }
+  
+  .review-star {
+    color: black; 
+    margin: 0px 5px 5px 10px;
+    font-size: 1.1rem;
+  }
+  
+  .review-count {
+    color: #7c7c7c;
+    font-size: 0.9rem;
+  }
+  
+  .reviews-section {
+    margin: 10px 0px;
+    padding: 0px 10px 0px 10px;
+  }
+  
+  .review-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 5px;
+    padding: 10px 0px;
+    border-bottom: 1px solid #eaeaea; 
+    position: relative;
+  }
+  
+  .review-profile-image {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+  
+  .review-nickname {
+    font-size: 0.9rem;
+    font-weight: bold;
+  }
+  
+  .review-options-menu {
+    position: absolute;
+    left: -5px;
+    top: 30px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    z-index: 1;
+  }
+  
+  .store-actions {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    gap: 60px;
+    position: relative;
+  }
+}

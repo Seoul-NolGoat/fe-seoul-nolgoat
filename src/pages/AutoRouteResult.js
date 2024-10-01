@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import './AutoRouteResult.css';
 import StarRating from '../components/StarRating';
@@ -15,8 +15,10 @@ const AutoRouteResult = () => {
   const [map, setMap] = useState(null);
   const [markers, setMarkers] = useState([]);
   const [overlays, setOverlays] = useState([]);
-  const [lines, setLines] = useState([]); // Polyline을 관리할 상태 추가
+  const [lines, setLines] = useState([]);
   const [selectedRouteIndex, setSelectedRouteIndex] = useState(null);
+  const [isListExpanded, setIsListExpanded] = useState(true);
+  const selectedRouteRef = useRef(null);
 
   useEffect(() => {
     if (location.state && location.state.results) {
@@ -40,10 +42,23 @@ const AutoRouteResult = () => {
     }
   }, [location.state]);
 
+  useEffect(() => {
+    if (map) {
+      map.relayout();
+      const [latitude, longitude] = location.state.coordinates.split(',');
+      map.setCenter(new kakao.maps.LatLng(latitude, longitude));
+    }
+  }, [isListExpanded, map, location.state.coordinates]);
+
+  useEffect(() => {
+    if (!isListExpanded && selectedRouteIndex !== null && selectedRouteRef.current) {
+      selectedRouteRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [isListExpanded, selectedRouteIndex]);
+
   const displayRouteOnMap = (route, index) => {
     setSelectedRouteIndex(index);
 
-    // 기존 마커와 오버레이 제거
     if (markers.length > 0) {
       markers.forEach(markerObj => {
         if (markerObj && markerObj.marker) {
@@ -89,7 +104,6 @@ const AutoRouteResult = () => {
       return null;
     }).filter(markerObj => markerObj !== null);
 
-    // Polyline을 생성하여 지도에 추가
     const path = [
       new kakao.maps.LatLng(location.state.coordinates.split(',')[0], location.state.coordinates.split(',')[1]),
       ...route.map(store => new kakao.maps.LatLng(store.coordinate.latitude, store.coordinate.longitude))
@@ -106,7 +120,7 @@ const AutoRouteResult = () => {
     line.setMap(map);
 
     setMarkers(newMarkers);
-    setLines([line]); // Polyline 상태 업데이트
+    setLines([line]);
   };
 
   const handleStoreClick = (store) => {
@@ -141,7 +155,7 @@ const AutoRouteResult = () => {
 
   return (
     <div className="auto-route-result">
-      <div className="results-list">
+      <div className={`results-list ${isListExpanded ? 'expanded' : 'collapsed'}`}>
         {results.map((route, index) => {
           const stores = [route.firstStore, route.secondStore, route.thirdStore].filter(store => store !== null);
           const storeCount = stores.length;
@@ -150,6 +164,7 @@ const AutoRouteResult = () => {
               key={index} 
               className={`route-item ${selectedRouteIndex === index ? 'active' : ''}`} 
               onClick={() => displayRouteOnMap(stores, index)}
+              ref={selectedRouteIndex === index ? selectedRouteRef : null}
             >
               <div className="route-number">{index + 1}</div>
               <div className="route-info">
@@ -203,8 +218,14 @@ const AutoRouteResult = () => {
             </div>
           );
         })}
+        <div 
+          className="toggle-list-arrow"
+          onClick={() => setIsListExpanded(!isListExpanded)}
+        >
+          {isListExpanded ? '▲' : '▼'}
+        </div>
       </div>
-      <div id="map" className="map-container"></div>
+      <div id="map" className={`${isListExpanded ? 'map-container' : 'map-container-collapsed'}`}></div>
     </div>
   );
 };

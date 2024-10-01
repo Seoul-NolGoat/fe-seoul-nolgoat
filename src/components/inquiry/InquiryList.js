@@ -25,7 +25,7 @@ const InquiryList = ({ inquiries, onInquiryClick, onWriteClick }) => {
               <th>제목</th>
               <th>작성자</th>
               <th>작성일</th>
-              <th>공개여부</th>
+              <th>공개</th>
             </tr>
           </thead>
           <tbody>

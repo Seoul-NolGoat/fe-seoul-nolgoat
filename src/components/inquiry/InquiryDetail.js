@@ -51,7 +51,7 @@ const InquiryDetail = ({ inquiry, onEditClick, onBackClick }) => {
             <td>{inquiryDetails.userNickname}</td>
             <th>등록일</th>
             <td>{inquiryDetails.createDate}</td>
-            <th>공개여부</th>
+            <th>잠금</th>
             <td>{inquiryDetails.isPublic ? '공개' : '비공개'}</td>
           </tr>
         </tbody>

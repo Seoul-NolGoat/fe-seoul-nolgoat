@@ -32,12 +32,12 @@ const LoginModal = ({ closeModal }) => {
 
   const handleKakaoLogin = () => {
     // Kakao OAuth 로그인 페이지로 리다이렉션
-    window.location.href = "http://nolgoat.site/oauth2/authorization/kakao";
+    window.location.href = "https://server.nolgoat.site/oauth2/authorization/kakao";
   };
 
   const handleGoogleLogin = () => {
     // Google OAuth 로그인 페이지로 리다이렉션
-    window.location.href = "http://nolgoat.site/oauth2/authorization/google";
+    window.location.href = "https://server.nolgoat.site/oauth2/authorization/google";
   };
 
   //const handleGithubLogin = () => {

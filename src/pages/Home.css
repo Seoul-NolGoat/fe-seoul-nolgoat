@@ -135,3 +135,146 @@
   font-size: 14px;
   color: #555;
 }
+
+
+/* 모바일 크기에 맞는 레이아웃 */
+@media (max-width: 500px) {
+  .home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    padding: 0; 
+    margin: 0; 
+    box-sizing: border-box;
+  }
+  
+  .header {
+    text-align: center;
+    margin: 0; 
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background-image: url('../assets/home-icons/background-image.png'); 
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+  }
+  
+  .header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    background-color: rgba(0, 0, 0, 0.6); 
+    z-index: 0;
+  }
+  
+  .header-content {
+    position: relative;
+    z-index: 1;
+    color: white;
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+    margin: 0;
+  }
+  
+  .description {
+    font-size: 1rem;
+    margin: 10px 0 0;
+  }
+  
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 70px; 
+  }
+  
+  .address-search-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .radius-dropdown {
+    width: 100px;
+    margin-top: 10px;
+    padding: 8px 8px 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    color: gray; 
+  }
+  
+  .radius-dropdown.selected {
+    color: black; 
+  }
+  
+  .radius-dropdown option {
+    color: black; 
+  }
+  
+  .radius-dropdown option[disabled] {
+    color: gray; 
+  }
+  
+  .card-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 50px;
+  }
+  
+  .custom-card {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border: 1.5px solid #ddd;
+    padding: 5px;
+    width: 155px;
+    text-align: left;
+    border-radius: 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .custom-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 15px;
+    border-radius: 10px;
+  }
+  
+  .card-text-content {
+    text-align: left;
+  }
+  
+  .card-text-content p {
+    margin: 5px 0;
+  }
+  
+  .card-place-text {
+    font-weight: 600;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .card-desc-text {
+    font-size: 10px;
+    color: #555;
+  }
+  
+}

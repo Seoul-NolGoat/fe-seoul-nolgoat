@@ -32,3 +32,19 @@
 .star.half {
   color: #ddd;
 }
+
+
+/* 모바일 크기에 맞는 레이아웃 */
+@media (max-width: 500px) {
+  .grade-number {
+    font-size: 0.65em;
+    color: #f15b5b;
+    margin-right: 5px;
+  }
+  
+  .star {
+    font-size: 0.7em;
+    position: relative;
+    color: #f15b5b;
+  }
+}

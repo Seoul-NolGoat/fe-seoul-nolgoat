@@ -1,15 +1,59 @@
 .tab-page-container-wrapper {
-    background-color: #f0f0f0;
-    padding: 20px 0;
+  background-color: #f0f0f0;
+  padding: 20px 0;
+}
+
+.tab-page-container {
+  background-color: #ffffff;
+  padding: 20px 40px;
+  width: 750px;
+  margin: 0 auto;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.tab-header {
+  padding-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin-bottom: 0px;
+}
+
+.tab-item {
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 5px;
+  color: grey;
+}
+
+.tab-item.active {
+  font-weight: bold;
+  color: #007bff;
+  border-bottom: 2px solid #007bff;
+}
+
+.tab-content {
+  /* font-size: 1.2rem; */
+  margin-top: 20px;
+}
+
+
+/* 모바일 크기에 맞는 레이아웃 */
+@media (max-width: 500px) {
+  .tab-page-container-wrapper {
+    background-color: #ffffff;
+    padding: 0;
 }
 
 .tab-page-container {
     background-color: #ffffff;
-    padding: 20px 40px;
-    width: 750px;
+    padding: 10px 0px;
+    width: 100%;
     margin: 0 auto;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: none;
     border-radius: 8px;
+    box-sizing: border-box;
   }
   
   .tab-header {
@@ -21,7 +65,7 @@
   }
   
   .tab-item {
-    font-size: 1.1rem;
+    font-size: 15px;
     cursor: pointer;
     padding: 5px;
     color: grey;
@@ -34,7 +78,7 @@
   }
   
   .tab-content {
-    /* font-size: 1.2rem; */
-    margin-top: 20px;
+    width: 100%;
+    margin-top: 15px;
   }
-  
+}

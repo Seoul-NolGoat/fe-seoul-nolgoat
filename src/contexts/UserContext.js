@@ -7,18 +7,25 @@ export const UserProvider = ({ children }) => {
   const [userProfile, setUserProfile] = useState(null);
 
   useEffect(() => {
-    // /api/user_profile API를 호출하여 사용자 정보를 가져옴
     const fetchUserProfile = async () => {
-      try {
-        const response = await axiosInstance.get('/user_profile');
-        if (response.status === 200 && response.data) {
-          setUserProfile(response.data);
-        } else {
-          setUserProfile(null); // 로그인되지 않은 상태
+      // 로컬 스토리지에서 accessToken을 가져옴
+      const accessToken = localStorage.getItem('accessToken');
+
+      // accessToken이 있는 경우에만 API 호출
+      if (accessToken) {
+        try {
+          const response = await axiosInstance.get('/user_profile');
+          if (response.status === 200 && response.data) {
+            setUserProfile(response.data);
+          } else {
+            setUserProfile(null); // 로그인되지 않은 상태
+          }
+        } catch (error) {
+          console.error('Failed to fetch user profile:', error);
+          setUserProfile(null);
         }
-      } catch (error) {
-        console.error('Failed to fetch user profile:', error);
-        setUserProfile(null);
+      } else {
+        setUserProfile(null); // accessToken이 없으면 로그인되지 않은 상태
       }
     };
 

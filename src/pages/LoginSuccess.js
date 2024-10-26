@@ -12,7 +12,10 @@ function LoginSuccess() {
     if (access && refresh) {
       // JWT 토큰을 로컬 스토리지에 저장
       localStorage.setItem('accessToken', access);
-      localStorage.setItem('refreshToken', refresh);
+
+      // 리프레시 토큰을 쿠키에 저장
+      document.cookie = `refreshToken=${refresh}; path=/; SameSite=None; secure`;
+
 
       // 원하는 페이지로 리다이렉트
       navigate('/');

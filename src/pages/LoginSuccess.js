@@ -14,7 +14,7 @@ function LoginSuccess() {
       localStorage.setItem('accessToken', access);
 
       // 리프레시 토큰을 쿠키에 저장
-      document.cookie = `refreshToken=${refresh}; path=/; SameSite=None; secure`;
+      document.cookie = `refreshToken=${refresh}; path=/; SameSite=None; Secure; Domain=.nolgoat.site`;
 
 
       // 원하는 페이지로 리다이렉트

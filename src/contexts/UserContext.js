@@ -14,7 +14,7 @@ export const UserProvider = ({ children }) => {
       // accessToken이 있는 경우에만 API 호출
       if (accessToken) {
         try {
-          const response = await axiosInstance.get('/user_profile');
+          const response = await axiosInstance.get('/auths/me');
           if (response.status === 200 && response.data) {
             setUserProfile(response.data);
           } else {

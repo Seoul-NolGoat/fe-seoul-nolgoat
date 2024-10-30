@@ -62,7 +62,7 @@ const StoreDetail = () => {
         setIsBookmarked(false);
         alert('즐겨찾기에서 삭제되었습니다.');
       } else {
-        await axiosInstance.post(`/bookmarks/${userProfile.userId}/${id}`);
+        await axiosInstance.post(`/bookmarks/${id}`);
         setIsBookmarked(true);
         alert('즐겨찾기에 저장되었습니다.'); 
       }

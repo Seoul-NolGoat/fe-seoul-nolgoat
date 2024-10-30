@@ -55,7 +55,7 @@ const InquiryForm = ({ inquiry, onCancel, userId }) => {
     } else {
       // 작성 모드일 경우
       axiosInstance
-        .post(`/inquiries/${userId}`, formData)
+        .post(`/inquiries`, formData)
         .then(() => {
           alert('게시물이 등록되었습니다.');
           window.location.reload(); 

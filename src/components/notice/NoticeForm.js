@@ -68,7 +68,7 @@ const NoticeForm = ({ notice, onCancel, userId }) => {
         });
     } else {
       axiosInstance
-        .post(`/notices/${userId}`, formData)
+        .post(`/notices`, formData)
         .then(() => {
           alert('게시물이 등록되었습니다.');
           window.location.reload(); 

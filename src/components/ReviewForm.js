@@ -54,7 +54,7 @@ const ReviewForm = ({ onSubmit, userProfileImage, username, userId, storeId }) =
     }
 
     try {
-      await axiosInstance.post(`/reviews/${userId}/${storeId}`, formData, {
+      await axiosInstance.post(`/reviews/${storeId}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

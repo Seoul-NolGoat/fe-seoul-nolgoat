@@ -7,7 +7,10 @@ const authService = {
   async refreshToken() {
     try {
       const response = await axios.post(`${API_BASE_URL}/auths/token/reissue`, {},{
-        withCredentials: true
+        withCredentials: true,
+        headers: {
+          'CSRF-Protection-UUID': process.env.REACT_APP_CSRF_PROTECTION_UUID, 
+        },
       });
 
       if (response.status === 200) {
@@ -29,7 +32,13 @@ const authService = {
 
   async logout() {
     try {
-        await axiosInstance.post('/auths/logout', {});
+        await axiosInstance.post('/auths/logout', {},
+          {
+            headers: {
+              'Csrf-Protection-Uuid': process.env.REACT_APP_CSRF_PROTECTION_UUID,
+            },
+          }
+        );
 
         localStorage.removeItem('accessToken');
   

@@ -30,7 +30,7 @@ const AutoRoutePlanner = () => {
     }
 
     const [latitude, longitude] = coordinates.split(',');
-    const categoriesString = selectedCategories.join(';').replace(/·/g, ','); 
+    const categoriesString = selectedCategories.join(','); 
 
     try {
       setLoading(true); 

@@ -147,7 +147,7 @@ const RouteCriteria = ({ allCategories, setCriteria, setSelectedCategories }) =>
               key={tabNumber}
               className={`tab-pane ${activeTab === tabNumber ? 'active' : ''}`}
             >
-              {/* 입력창 임시 주석처리 */}
+              {/* 입력창 임시 주석처리 */} 
               {/* <div className="input-container">
                 <input
                   type="text"

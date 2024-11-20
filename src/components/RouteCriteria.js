@@ -55,26 +55,26 @@ const RouteCriteria = ({ allCategories, setCriteria, setSelectedCategories }) =>
   };
 
   const restaurantCategories = [
-    { name: '한식', icon: require('../assets/category-icons/korean.png') },
-    { name: '중식', icon: require('../assets/category-icons/chinese.png') },
-    { name: '일식', icon: require('../assets/category-icons/japanese.png') },
-    { name: '육류·고기', icon: require('../assets/category-icons/grilled-meat.png') },
-    { name: '족발·보쌈', icon: require('../assets/category-icons/bossam.png') },
-    { name: '치킨', icon: require('../assets/category-icons/chicken.png') },
-    { name: '햄버거', icon: require('../assets/category-icons/burger.png') },
-    { name: '피자', icon: require('../assets/category-icons/pizza.png') },
-    { name: '찌개·전골', icon: require('../assets/category-icons/stew.png') },
-    { name: '국밥', icon: require('../assets/category-icons/soup.png') },
-    { name: '양꼬치', icon: require('../assets/category-icons/lamb.png') },
-    { name: '초밥·롤', icon: require('../assets/category-icons/sushi.png') },
-    { name: '라멘', icon: require('../assets/category-icons/ramen.png') },
-    { name: '분식', icon: require('../assets/category-icons/bunsik.png') },
-    { name: '술집', icon: require('../assets/category-icons/pub.png') },
-    { name: '해산물', icon: require('../assets/category-icons/seafood.png') },
-    { name: '곱창·막창', icon: require('../assets/category-icons/gopchang.png') },
-    { name: '회', icon: require('../assets/category-icons/sashimi.png') },
-    { name: '뷔페', icon: require('../assets/category-icons/buffet.png') },
-    { name: '아시아음식', icon: require('../assets/category-icons/asian.png') }
+    { name: '한식', value: 'KOREAN_FOOD', icon: require('../assets/category-icons/korean.png') },
+    { name: '중식', value: 'CHINESE_CUISINE', icon: require('../assets/category-icons/chinese.png') },
+    { name: '일식', value: 'JAPANESE_FOOD', icon: require('../assets/category-icons/japanese.png') },
+    { name: '육류·고기', value: 'MEAT', icon: require('../assets/category-icons/grilled-meat.png') },
+    { name: '족발·보쌈', value: 'JOKBAL_BOSSAM', icon: require('../assets/category-icons/bossam.png') },
+    { name: '치킨', value: 'CHICKEN', icon: require('../assets/category-icons/chicken.png') },
+    { name: '햄버거', value: 'HAMBURGER', icon: require('../assets/category-icons/burger.png') },
+    { name: '피자', value: 'PIZZA', icon: require('../assets/category-icons/pizza.png') },
+    { name: '찌개·전골', value: 'JJIGAE', icon: require('../assets/category-icons/stew.png') },
+    { name: '국밥', value: 'GUKBAP', icon: require('../assets/category-icons/soup.png') },
+    { name: '양꼬치', value: 'LAMB_SKEWER', icon: require('../assets/category-icons/lamb.png') },
+    { name: '초밥·롤', value: 'SUSHI_ROLL', icon: require('../assets/category-icons/sushi.png') },
+    { name: '라멘', value: 'RAMEN', icon: require('../assets/category-icons/ramen.png') },
+    { name: '분식', value: 'BUNSIK', icon: require('../assets/category-icons/bunsik.png') },
+    { name: '술집', value: 'PUB', icon: require('../assets/category-icons/pub.png') },
+    { name: '해산물', value: 'SEAFOOD', icon: require('../assets/category-icons/seafood.png') },
+    { name: '곱창·막창', value: 'GOBCHANG_MAKCHANG', icon: require('../assets/category-icons/gopchang.png') },
+    { name: '회', value: 'SASHIMI', icon: require('../assets/category-icons/sashimi.png') },
+    { name: '뷔페', value: 'BUFFET', icon: require('../assets/category-icons/buffet.png') },
+    { name: '아시아음식', value: 'ASIAN_CUISINE', icon: require('../assets/category-icons/asian.png') }
   ];
 
   const entertainmentCategories = [
@@ -147,7 +147,8 @@ const RouteCriteria = ({ allCategories, setCriteria, setSelectedCategories }) =>
               key={tabNumber}
               className={`tab-pane ${activeTab === tabNumber ? 'active' : ''}`}
             >
-              <div className="input-container">
+              {/* 입력창 임시 주석처리 */}
+              {/* <div className="input-container">
                 <input
                   type="text"
                   value={inputValue}
@@ -167,16 +168,16 @@ const RouteCriteria = ({ allCategories, setCriteria, setSelectedCategories }) =>
                     ))}
                   </ul>
                 )}
-              </div>
+              </div> */}
               <div className="condition-selector">
                 <label className="condition-label">음식점</label>
                 <div className="options category-options">
                   {restaurantCategories.map((category, index) => (
                     <button
                       key={index}
-                      className={`option ${conditions[tabNumber].category === category.name ? 'selected' : ''}`}
-                      onClick={() => handleConditionChange(tabNumber, 'category', category.name, category.name)}
-                      disabled={!allCategories.includes(category.name) || !isCategorySelectable(tabNumber)}
+                      className={`option ${conditions[tabNumber].category === category.value ? 'selected' : ''}`}
+                      onClick={() => handleConditionChange(tabNumber, 'category', category.value, category.name)}
+                      disabled={!allCategories.includes(category.value) || !isCategorySelectable(tabNumber)}
                     >
                       <img src={category.icon} alt={category.name} className="category-icon" />
                       <span>{category.name}</span>

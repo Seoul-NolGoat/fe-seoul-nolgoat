@@ -169,7 +169,7 @@ const AutoRouteResult = () => {
               <div className="route-number">{index + 1}</div>
               <div className="route-info">
                 <img src={walkingIcon} alt="walking" className="walking-icon" />
-                <span className="route-distance">{route.walkRouteInfoDto.totalDistance}m</span>
+                <span className="route-distance">{route.walkRouteInfoDto.tMapTotalDistance}m</span>
               </div>
               <div className="store-info">
                 {stores.map((store, idx) => (

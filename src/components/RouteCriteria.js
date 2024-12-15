@@ -63,7 +63,7 @@ const RouteCriteria = ({ allCategories, setCriteria, setSelectedCategories }) =>
     { name: '치킨', value: 'CHICKEN', icon: require('../assets/category-icons/chicken.png') },
     { name: '햄버거', value: 'HAMBURGER', icon: require('../assets/category-icons/burger.png') },
     { name: '피자', value: 'PIZZA', icon: require('../assets/category-icons/pizza.png') },
-    { name: '찌개·전골', value: 'JJIGAE', icon: require('../assets/category-icons/stew.png') },
+    { name: '찌개·전골', value: 'JJIGAE_JEONGOL', icon: require('../assets/category-icons/stew.png') },
     { name: '국밥', value: 'GUKBAP', icon: require('../assets/category-icons/soup.png') },
     { name: '양꼬치', value: 'LAMB_SKEWER', icon: require('../assets/category-icons/lamb.png') },
     { name: '초밥·롤', value: 'SUSHI_ROLL', icon: require('../assets/category-icons/sushi.png') },

@@ -21,7 +21,7 @@ const Notices = () => {
     axiosInstance
       .get('/notices')
       .then((response) => {
-        setNotices(response.data);
+        setNotices(response.data.content);
       })
       .catch((error) => {
         console.error('공지 목록을 불러오는 중 에러 발생:', error);

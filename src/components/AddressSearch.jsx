@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './AddressSearch.css';
+import styled from "styled-components";
 import gpsIcon from '../assets/address-icons/gps.png';
 import searchIcon from '../assets/address-icons/search.png';
 import axiosInstance from '../services/axiosInstance';
@@ -70,21 +70,63 @@ const AddressSearch = ({ setAddress, setCoordinates }) => {
   };
 
   return (
-    <div className="address-search">
-      <button onClick={handleCurrentLocation} className="gps-button">
-        <img src={gpsIcon} alt="GPS" className="gps-icon" />
-      </button>
-      <input
-        type="text"
-        placeholder="주소 검색"
-        value={address}
-        readOnly
-      />
-      <button onClick={sample4_execDaumPostcode} className="search-button">
-        <img src={searchIcon} alt="Search" className="search-icon" />
-      </button>
-    </div>
+    <AddressSearchContainer>
+      <GpsButton onClick={handleCurrentLocation}>
+        <Icon src={gpsIcon} alt="GPS" />
+      </GpsButton>
+      <AddressInput placeholder="주소 검색" value={address} readOnly />
+      <SearchButton onClick={sample4_execDaumPostcode}>
+        <Icon src={searchIcon} alt="Search" />
+      </SearchButton>
+    </AddressSearchContainer>
   );
 };
+
+const AddressSearchContainer  = styled.div`
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+`;
+
+export const AddressInput = styled.input.attrs({ type: "text" })`
+  width: 200px;
+  margin: 0 5px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  flex: 1;
+`;
+
+export const SearchButton = styled.button`
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #ffffff;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #e9e9e9;
+  }  
+`;
+
+export const GpsButton = styled.button`
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #e9e9e9;
+  }
+`;
+
+export const Icon = styled.img`
+  width: 25.5px;
+  height: 25.5px;
+`;
 
 export default AddressSearch;

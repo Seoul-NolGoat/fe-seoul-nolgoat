@@ -335,7 +335,7 @@ input:checked + .slider:before {
   
 
 /* 모바일 크기에 맞는 레이아웃 */
-@media (max-width: 500px) {
+@media (max-width: 5000px) {
     .notices-container-wrapper {
         width: 100%;
         background-color: #ffffff;

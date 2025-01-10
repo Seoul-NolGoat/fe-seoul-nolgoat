@@ -4,7 +4,7 @@ import './AutoRouteResult.css';
 import StarRating from '../components/StarRating';
 import walkingIcon from '../assets/route-result-icons/walking.png';
 import kakaoIcon from '../assets/route-result-icons/kakao.png';
-import nolgoatIcon from '../assets/route-result-icons/nolgoat.png';
+import nolgoatIcon from '../assets/home-icons/nolgoat-circle.png';
 import { Link } from 'react-router-dom';
 
 const { kakao } = window;

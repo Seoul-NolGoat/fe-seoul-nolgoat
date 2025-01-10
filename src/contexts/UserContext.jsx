@@ -5,6 +5,10 @@ export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [userProfile, setUserProfile] = useState(null);
+  const [accessToken, setAccessToken] = useState(localStorage.getItem('accessToken'));
+  const [loading, setLoading] = useState(true);
+
+  // useEffect(() => {alert(userProfile)}, [userProfile]);
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -14,7 +18,7 @@ export const UserProvider = ({ children }) => {
       // accessToken이 있는 경우에만 API 호출
       if (accessToken) {
         try {
-          const response = await axiosInstance.get('/users/me');
+          const response = await axiosInstance.get('/auths/me');
           if (response.status === 200 && response.data) {
             setUserProfile(response.data);
           } else {
@@ -27,13 +31,14 @@ export const UserProvider = ({ children }) => {
       } else {
         setUserProfile(null); // accessToken이 없으면 로그인되지 않은 상태
       }
+      setLoading(false);
     };
 
     fetchUserProfile();
-  }, []);
+  }, [accessToken]);
 
   return (
-    <UserContext.Provider value={{ userProfile, setUserProfile }}>
+    <UserContext.Provider value={{ userProfile, setUserProfile, setAccessToken, loading  }}>
       {children}
     </UserContext.Provider>
   );

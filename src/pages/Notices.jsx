@@ -2,9 +2,9 @@ import React, { useContext, useEffect, useState } from 'react';
 import './Notices.css';
 import axiosInstance from '../services/axiosInstance';
 import { UserContext } from '../contexts/UserContext';
-import NoticeList from '../components/notice/NoticeList';
-import NoticeDetail from '../components/notice/NoticeDetail.js';
-import NoticeForm from '../components/notice/NoticeForm.js';
+import NoticeList from '../components/notice/NoticeList.jsx';
+import NoticeDetail from '../components/notice/NoticeDetail.jsx';
+import NoticeForm from '../components/notice/NoticeForm.jsx';
 
 const Notices = () => {
   const { userProfile } = useContext(UserContext);
@@ -21,7 +21,7 @@ const Notices = () => {
     axiosInstance
       .get('/notices')
       .then((response) => {
-        setNotices(response.data.content);
+        setNotices(response.data);
       })
       .catch((error) => {
         console.error('공지 목록을 불러오는 중 에러 발생:', error);

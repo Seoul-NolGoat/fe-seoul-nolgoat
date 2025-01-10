@@ -21,7 +21,7 @@ const Inquiries = () => {
     axiosInstance
       .get('/inquiries')
       .then((response) => {
-        setInquiries(response.data.content);
+        setInquiries(response.data);
       })
       .catch((error) => {
         console.error('건의사항 목록을 불러오는 중 에러 발생:', error);

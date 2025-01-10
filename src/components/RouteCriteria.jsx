@@ -91,7 +91,7 @@ const RouteCriteria = ({ allCategories, setCriteria, setSelectedCategories }) =>
     { name: '치킨', value: 'CHICKEN', icon: chickenIcon },
     { name: '햄버거', value: 'HAMBURGER', icon: burgerIcon },
     { name: '피자', value: 'PIZZA', icon: pizzaIcon },
-    { name: '찌개·전골', value: 'JJIGAE', icon: stewIcon },
+    { name: '찌개·전골', value: 'JJIGAE_JEONGOL', icon: stewIcon },
     { name: '국밥', value: 'GUKBAP', icon: soupIcon },
     { name: '양꼬치', value: 'LAMB_SKEWER', icon: lambIcon },
     { name: '초밥·롤', value: 'SUSHI_ROLL', icon: sushiIcon },

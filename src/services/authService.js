@@ -9,7 +9,7 @@ const authService = {
       const response = await axios.post(`${API_BASE_URL}/auths/token/reissue`, {},{
         withCredentials: true,
         headers: {
-          'CSRF-Protection-UUID': process.env.REACT_APP_CSRF_PROTECTION_UUID, 
+          'CSRF-Protection-UUID': import.meta.env.VITE_CSRF_PROTECTION_UUID, 
         },
       });
 
@@ -35,7 +35,7 @@ const authService = {
         await axiosInstance.post('/auths/logout', {},
           {
             headers: {
-              'Csrf-Protection-Uuid': process.env.REACT_APP_CSRF_PROTECTION_UUID,
+              'Csrf-Protection-Uuid': import.meta.env.VITE_CSRF_PROTECTION_UUID,
             },
           }
         );

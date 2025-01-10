@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './DraggableStarRating.css';
+import styled from "styled-components";
 
 const DraggableStarRating = ({ grade, onChange }) => {
   const [selectedGrade, setSelectedGrade] = useState(grade); // 선택된 별점 상태
@@ -35,25 +35,37 @@ const DraggableStarRating = ({ grade, onChange }) => {
   };
 
   return (
-    <div
-      className="draggable-star-rating-container"
+    <DraggableStarRatingContainer
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseLeave}
     >
       {[...Array(maxStars)].map((_, i) => (
-        <span
+        <Star
           key={i}
-          className={`draggable-star-rating-star ${
-            i < (dragging ? selectedGrade : hoveredStar || selectedGrade) ? 'draggable-star-rating-filled' : 'draggable-star-rating-empty'
-          }`}
+          filled={i < (dragging ? selectedGrade : hoveredStar || selectedGrade)}
           onMouseDown={() => handleMouseDown(i)}
           onMouseMove={() => handleMouseMove(i)}
         >
           ★
-        </span>
+        </Star>
       ))}
-    </div>
+    </DraggableStarRatingContainer>
   );
 };
+
+const DraggableStarRatingContainer = styled.div`
+  margin-left: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+`;
+
+const Star = styled.span`
+  font-size: 1.5rem;
+  color: ${(props) => (props.filled ? '#f15b5b' : '#ddd')};
+  transition: color 0.2s;
+`;
 
 export default DraggableStarRating;

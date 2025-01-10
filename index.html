@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React App</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+
+  <!-- 구글 폰트 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Nanum Gothic 구글 폰트 -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+  <!-- Noto Sans Korean 구글 폰트 -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+  <!-- Source Sans 구글 폰트 -->
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+  <!-- Work Sans 구글 폰트 -->
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+
+  <!-- Kakao 지도 SDK (환경 변수 적용 필요) -->
+  <!-- <script type="module">
+    const script = document.createElement("script");
+    script.src = `https://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=bd5934d53c968370eb0f7575fcb735e2&libraries=services,clusterer,drawing`;
+    document.head.appendChild(script);
+  </script> -->
+
+  <script type="module">
+    const script = document.createElement("script");
+    script.src = `https://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${import.meta.env.VITE_KAKAO_MAP_API_KEY}&libraries=services,clusterer,drawing`;
+    script.onload = () => {
+      // Kakao 지도 API 로드 후 초기화
+      window.kakao.maps.load(() => {
+        console.log("Kakao Maps API loaded successfully!");
+        // 여기서 kakao.maps 관련 작업 시작
+      });
+    };
+    script.onerror = () => {
+      console.error("Failed to load Kakao Maps API");
+    };
+    document.head.appendChild(script);
+  </script>
+
+
+
+
+  <!-- script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${import.meta.env.VITE_KAKAO_MAP_API_KEY}&libraries=services,clusterer,drawing`; -->
+  <!-- Daum 우편번호 API -->
+  <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+</html>

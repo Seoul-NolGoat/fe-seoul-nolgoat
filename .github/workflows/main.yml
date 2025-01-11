@@ -24,9 +24,9 @@ jobs:
       
       - name: Set up environment variables
         run: |
-          echo "REACT_APP_KAKAO_MAP_API_KEY=${{ secrets.REACT_APP_KAKAO_MAP_API_KEY }}" >> .env
-          echo "GENERATE_SOURCEMAP=${{ secrets.GENERATE_SOURCEMAP }}" >> .env
-          echo "REACT_APP_CSRF_PROTECTION_UUID=${{ secrets.REACT_APP_CSRF_PROTECTION_UUID }}" >> .env
+          echo "VITE_KAKAO_MAP_API_KEY=${{ secrets.VITE_KAKAO_MAP_API_KEY }}" >> .env
+          echo "VITE_GENERATE_SOURCEMAP=${{ secrets.VITE_GENERATE_SOURCEMAP }}" >> .env
+          echo "VITE_CSRF_PROTECTION_UUID=${{ secrets.VITE_CSRF_PROTECTION_UUID }}" >> .env
       
       - name: Build
         run: npm run build

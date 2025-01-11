@@ -1,21 +1,49 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-const { kakao } = window;
-
 const RoadViewModal = ({ latitude, longitude, onClose }) => {
+  const [isKakaoLoaded, setIsKakaoLoaded] = useState(false);
+
+  // 카카오맵 로드 확인
   useEffect(() => {
-    if (latitude && longitude) {
+    const checkKakaoMap = () => {
+      if (window.kakao && window.kakao.maps) {
+        setIsKakaoLoaded(true);
+      }
+    };
+
+    // 이미 로드되어 있는 경우
+    if (window.kakao && window.kakao.maps) {
+      setIsKakaoLoaded(true);
+      return;
+    }
+
+    // 로드되어 있지 않은 경우 이벤트 리스너 추가
+    const script = document.querySelector('script[src*="kakao.maps.js"]');
+    if (script) {
+      script.addEventListener('load', checkKakaoMap);
+    }
+
+    return () => {
+      if (script) {
+        script.removeEventListener('load', checkKakaoMap);
+      }
+    };
+  }, []);
+
+  // 로드맵 초기화
+  useEffect(() => {
+    if (latitude && longitude && isKakaoLoaded) {
       const roadviewContainer = document.getElementById('roadview-modal'); 
-      const roadview = new kakao.maps.Roadview(roadviewContainer); 
-      const roadviewClient = new kakao.maps.RoadviewClient();
-      const position = new kakao.maps.LatLng(latitude, longitude);
+      const roadview = new window.kakao.maps.Roadview(roadviewContainer); 
+      const roadviewClient = new window.kakao.maps.RoadviewClient();
+      const position = new window.kakao.maps.LatLng(latitude, longitude);
 
       roadviewClient.getNearestPanoId(position, 50, (panoId) => {
         roadview.setPanoId(panoId, position);
       });
     }
-  }, [latitude, longitude]);
+  }, [latitude, longitude, isKakaoLoaded]);
 
   return (
     <RoadviewModalOverlay onClick={onClose}>
@@ -38,7 +66,7 @@ const RoadviewModalOverlay = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 1000;
-`
+`;
 
 const RoadviewModalContent = styled.div`
   width: 80%;
@@ -47,7 +75,7 @@ const RoadviewModalContent = styled.div`
   border-radius: 8px;
   background: white;
   position: relative;
-`
+`;
 
 export const RoadviewModalCloseButton = styled.button`
   position: absolute;
@@ -64,9 +92,9 @@ export const RoadviewModalCloseButton = styled.button`
   }
 `;
 
-const RoadviewModalContainer  = styled.div`
+const RoadviewModalContainer = styled.div`
   width: 100%;
   height: 500px;
-`
+`;
 
 export default RoadViewModal;

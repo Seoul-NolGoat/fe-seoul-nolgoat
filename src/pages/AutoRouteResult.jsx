@@ -7,8 +7,6 @@ import kakaoIcon from '../assets/route-result-icons/kakao.png';
 import nolgoatIcon from '../assets/home-icons/nolgoat-circle.png';
 import { Link } from 'react-router-dom';
 
-const { kakao } = window;
-
 const AutoRouteResult = () => {
   const location = useLocation();
   const [results, setResults] = useState([]);
@@ -18,21 +16,49 @@ const AutoRouteResult = () => {
   const [lines, setLines] = useState([]);
   const [selectedRouteIndex, setSelectedRouteIndex] = useState(null);
   const [isListExpanded, setIsListExpanded] = useState(true);
+  const [isKakaoLoaded, setIsKakaoLoaded] = useState(false);
   const selectedRouteRef = useRef(null);
 
+  // Kakao 맵 스크립트 로드 확인
   useEffect(() => {
-    if (location.state && location.state.results) {
+    const checkKakaoMap = () => {
+      if (window.kakao && window.kakao.maps) {
+        setIsKakaoLoaded(true);
+      }
+    };
+
+    // 이미 로드되어 있는 경우
+    if (window.kakao && window.kakao.maps) {
+      setIsKakaoLoaded(true);
+      return;
+    }
+
+    // 로드되어 있지 않은 경우 이벤트 리스너 추가
+    const script = document.querySelector('script[src*="kakao.maps.js"]');
+    if (script) {
+      script.addEventListener('load', checkKakaoMap);
+    }
+
+    return () => {
+      if (script) {
+        script.removeEventListener('load', checkKakaoMap);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (location.state && location.state.results && isKakaoLoaded) {
       setResults(location.state.results);
       const [latitude, longitude] = location.state.coordinates.split(',');
       const container = document.getElementById('map');
       const options = {
-        center: new kakao.maps.LatLng(latitude, longitude),
+        center: new window.kakao.maps.LatLng(latitude, longitude),
         level: 3,
       };
-      const mapInstance = new kakao.maps.Map(container, options);
+      const mapInstance = new window.kakao.maps.Map(container, options);
 
-      const centerPosition = new kakao.maps.LatLng(latitude, longitude);
-      new kakao.maps.CustomOverlay({
+      const centerPosition = new window.kakao.maps.LatLng(latitude, longitude);
+      new window.kakao.maps.CustomOverlay({
         position: centerPosition,
         content: '<div class="custom-marker red-marker"></div>',
         map: mapInstance,
@@ -40,13 +66,13 @@ const AutoRouteResult = () => {
 
       setMap(mapInstance);
     }
-  }, [location.state]);
+  }, [location.state, isKakaoLoaded]);
 
   useEffect(() => {
     if (map) {
       map.relayout();
       const [latitude, longitude] = location.state.coordinates.split(',');
-      map.setCenter(new kakao.maps.LatLng(latitude, longitude));
+      map.setCenter(new window.kakao.maps.LatLng(latitude, longitude));
     }
   }, [isListExpanded, map, location.state.coordinates]);
 
@@ -57,6 +83,8 @@ const AutoRouteResult = () => {
   }, [isListExpanded, selectedRouteIndex]);
 
   const displayRouteOnMap = (route, index) => {
+    if (!window.kakao || !window.kakao.maps) return;
+    
     setSelectedRouteIndex(index);
 
     if (markers.length > 0) {
@@ -86,13 +114,13 @@ const AutoRouteResult = () => {
 
     const newMarkers = route.map((store, index) => {
       if (store) {
-        const marker = new kakao.maps.Marker({
-          position: new kakao.maps.LatLng(store.coordinate.latitude, store.coordinate.longitude),
+        const marker = new window.kakao.maps.Marker({
+          position: new window.kakao.maps.LatLng(store.coordinate.latitude, store.coordinate.longitude),
           map: map,
           title: store.name,
         });
 
-        const label = new kakao.maps.CustomOverlay({
+        const label = new window.kakao.maps.CustomOverlay({
           position: marker.getPosition(),
           yAnchor: 1.8,
           content: `<div class="custom-marker-label">${index + 1}</div>`,
@@ -105,11 +133,11 @@ const AutoRouteResult = () => {
     }).filter(markerObj => markerObj !== null);
 
     const path = [
-      new kakao.maps.LatLng(location.state.coordinates.split(',')[0], location.state.coordinates.split(',')[1]),
-      ...route.map(store => new kakao.maps.LatLng(store.coordinate.latitude, store.coordinate.longitude))
+      new window.kakao.maps.LatLng(location.state.coordinates.split(',')[0], location.state.coordinates.split(',')[1]),
+      ...route.map(store => new window.kakao.maps.LatLng(store.coordinate.latitude, store.coordinate.longitude))
     ];
 
-    const line = new kakao.maps.Polyline({
+    const line = new window.kakao.maps.Polyline({
       path: path,
       strokeWeight: 3,
       strokeColor: '#808080',
@@ -124,6 +152,8 @@ const AutoRouteResult = () => {
   };
 
   const handleStoreClick = (store) => {
+    if (!window.kakao || !window.kakao.maps) return;
+
     if (overlays.length > 0) {
       overlays.forEach(overlay => overlay.setMap(null));
     }
@@ -144,8 +174,8 @@ const AutoRouteResult = () => {
       </div>
     `;
 
-    const overlay = new kakao.maps.CustomOverlay({
-      position: new kakao.maps.LatLng(store.coordinate.latitude, store.coordinate.longitude),
+    const overlay = new window.kakao.maps.CustomOverlay({
+      position: new window.kakao.maps.LatLng(store.coordinate.latitude, store.coordinate.longitude),
       content: overlayContent,
       map: map,
     });

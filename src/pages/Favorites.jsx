@@ -16,9 +16,9 @@ const Favorites = () => {
   useEffect(() => {
     if (userProfile) {
       axiosInstance
-        .get(`/stores/bookmarked/${userProfile.userId}`)
+        .get(`/users/me/bookmarks`)
         .then((response) => {
-          setBookmarkedStores(response.data);
+          setBookmarkedStores(response.data.content);
         })
         .catch((error) => {
           console.error('즐겨찾기 목록을 불러오는 중 에러 발생:', error);

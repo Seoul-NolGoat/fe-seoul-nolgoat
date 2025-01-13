@@ -19,14 +19,6 @@
   <!-- Work Sans 구글 폰트 -->
   <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
-
-  <!-- Kakao 지도 SDK (환경 변수 적용 필요) -->
-  <!-- <script type="module">
-    const script = document.createElement("script");
-    script.src = `https://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=bd5934d53c968370eb0f7575fcb735e2&libraries=services,clusterer,drawing`;
-    document.head.appendChild(script);
-  </script> -->
-
   <script type="module">
     const script = document.createElement("script");
     script.src = `https://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${import.meta.env.VITE_KAKAO_MAP_API_KEY}&libraries=services,clusterer,drawing`;
@@ -44,12 +36,20 @@
   </script>
 
 
-
-
-  <!-- script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${import.meta.env.VITE_KAKAO_MAP_API_KEY}&libraries=services,clusterer,drawing`; -->
   <!-- Daum 우편번호 API -->
   <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BQJHKSRM73"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BQJHKSRM73');
+</script>
+
 <body>
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>

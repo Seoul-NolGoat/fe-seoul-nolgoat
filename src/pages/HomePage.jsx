@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { UserContext } from '../contexts/UserContext'; 
 import { useNavigate } from 'react-router-dom'; 
 
-// 이미지 임포트
 import ShopImage from '../assets/home-icons/shop.png';      
 import CombineImage from '../assets/home-icons/combine.png'; 
 import PartyImage from '../assets/home-icons/party.png';   
@@ -14,14 +13,12 @@ const HomePage = () => {
 
   return (
     <HomeContainer>
-      {/* 환영 메시지 */}
       <WelcomeCard>
         <p>{userProfile.nickname}님 환영합니다!</p>
       </WelcomeCard>
 
-      {/* 상단 메뉴 */}
       <MenuContainer>
-        <MenuItem onClick={() => navigate('/search')}>
+        <MenuItem onClick={() => navigate('/store-search')}>
           <Image src={ShopImage} alt="상점" />
           상점
         </MenuItem>
@@ -35,7 +32,6 @@ const HomePage = () => {
         </MenuItem>
       </MenuContainer>
 
-      {/* 하단 버튼 */}
       <ButtonContainer>
         <Button onClick={() => navigate('/favorites')}>
           <IconWrapper>

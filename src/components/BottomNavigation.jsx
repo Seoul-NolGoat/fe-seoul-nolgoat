@@ -9,7 +9,7 @@ const BottomNavigation = () => {
         <i className="fa-solid fa-house"></i>
         홈
       </NavItem>
-      <NavItem to="/search">
+      <NavItem to="/store-search">
         <i className="fa-solid fa-magnifying-glass"></i>
         상점
       </NavItem>
@@ -50,7 +50,7 @@ const NavItem = styled(NavLink)`
   align-items: center;
   font-size: 14px;
   text-decoration: none;
-  color: #333; /* 기본 색상: 어두운 회색 */
+  color: #333; 
   font-family: "Nanum Gothic", sans-serif;
 
   i {
@@ -59,11 +59,11 @@ const NavItem = styled(NavLink)`
   }
 
   &.active {
-    color: #007bff; /* 활성화된 상태의 색상: 파란색 */
+    color: #007bff; 
   }
 
   &:not(.active) {
-    color: #777777; /* 비활성화 상태의 색상: 어두운 회색 */
+    color: #777777; 
   }
 `;
 

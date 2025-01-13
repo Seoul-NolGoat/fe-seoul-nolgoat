@@ -11,6 +11,7 @@ import Favorites from './pages/Favorites';
 import NoticeInquiryTab from './pages/NoticeInquiryTab';
 import LoginSuccess from './pages/LoginSuccess';
 import StoreDetail from './pages/StoreDetail';
+import StoreSearch from './pages/StoreSearch'
 import Mypage from './pages/Mypage';
 import Login from './pages/Login';
 
@@ -107,6 +108,11 @@ function AppContent({
                 <RoutePlanner />
               </ProtectedRoute>
             } />
+            <Route path="/store-search" element={
+              <ProtectedRoute>
+                <StoreSearch />
+              </ProtectedRoute>
+            } />
             <Route path="/auto-route-result" element={
               <ProtectedRoute>
                 <AutoRouteResult />
@@ -161,7 +167,7 @@ const DynamicMainContent = styled.div`
   ${(props) =>
     props.path !== '/auto-route-result'
       ? `
-        height: calc(100vh - 127px);
+        height: calc(100vh - 115px);
         overflow-y: auto;
       `
       : ''}

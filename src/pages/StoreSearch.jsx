@@ -158,7 +158,7 @@ const SearchResultContainer = styled.div`
   margin-top: 85px;
   padding: 0 20px;
   box-sizing: border-box;
-  overflow-y: scroll;
+  overflow-y: auto;
 `;
 
 const SearchBar = styled.div`

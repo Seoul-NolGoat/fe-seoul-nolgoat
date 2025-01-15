@@ -60,7 +60,7 @@ const Favorites = () => {
     <FavoriteItemContainer>
       {stores.map((store) => (
         <FavoriteItem key={store.id}>
-          <FavoriteMain onClick={() => handleItemClick(store.id)}>
+          <FavoriteMain onClick={() => handleItemClick(store.storeId)}>
             <FavoriteIcon src={starIconBlue} alt="즐겨찾기 아이콘" />
             <FavoriteInfo>
               <FavoriteName>{store.name}</FavoriteName>
@@ -75,7 +75,7 @@ const Favorites = () => {
             />
             {showOptions === store.id && (
               <OptionsMenu>
-                <DeleteButton onClick={() => handleDeleteStore(store.id)}>
+                <DeleteButton onClick={() => handleDeleteStore(store.storeId)}>
                   삭제
                 </DeleteButton>
               </OptionsMenu>

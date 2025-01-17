@@ -14,6 +14,7 @@ import StoreDetail from './pages/StoreDetail';
 import StoreSearch from './pages/StoreSearch'
 import Mypage from './pages/Mypage';
 import Login from './pages/Login';
+import AccountDeletion from './pages/AccountDeletion';
 
 // Components
 import Header from './components/LoginHeader';
@@ -45,20 +46,8 @@ function App() {
     authService.logout();
   };
 
-  const openLoginModal = () => {
-    setLoginModalOpen(true);
-  };
-
-  const closeLoginModal = () => {
-    setLoginModalOpen(false);
-  };
-
-  const openRegisterModal = () => {
-    console.log('Open Register Modal');
-  };
-
-  const handleHostModeClick = () => {
-    console.log('Host Mode');
+  const handleAccountDeletion = () => {
+    authService.accountDeletion();
   };
 
   return (
@@ -66,25 +55,14 @@ function App() {
       <Router>
         <AppContent
           handleLogout={handleLogout}
-          openLoginModal={openLoginModal}
-          closeLoginModal={closeLoginModal}
-          openRegisterModal={openRegisterModal}
-          handleHostModeClick={handleHostModeClick}
-          isLoginModalOpen={isLoginModalOpen}
+          handleAccountDeletion={handleAccountDeletion}
         />
       </Router>
     </UserProvider>
   );
 }
 
-function AppContent({
-  handleLogout,
-  openLoginModal,
-  closeLoginModal,
-  openRegisterModal,
-  handleHostModeClick,
-  isLoginModalOpen,
-}) {
+function AppContent({ handleLogout, handleAccountDeletion }) {
   const location = useLocation();
 
   return (
@@ -139,6 +117,11 @@ function AppContent({
             <Route path="/mypage" element={
               <ProtectedRoute>
                 <Mypage handleLogout={handleLogout} />
+              </ProtectedRoute>
+            } />
+            <Route path="/account-deletion" element={
+              <ProtectedRoute>
+                <AccountDeletion handleAccountDeletion={handleAccountDeletion} />
               </ProtectedRoute>
             } />
           </Routes>

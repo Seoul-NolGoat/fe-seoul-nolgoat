@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../contexts/UserContext';
 
 const Mypage = ({ handleLogout }) => {
   const { userProfile } = useContext(UserContext);
+  const navigate = useNavigate();
 
   return (
     <Container>
@@ -23,6 +25,17 @@ const Mypage = ({ handleLogout }) => {
           <MenuItemContent>
             <MenuItemLeft>
               <span>내가 쓴 리뷰</span>
+            </MenuItemLeft>
+            <MenuItemRight>
+              <i className="fa-solid fa-angle-right"></i>
+            </MenuItemRight>
+          </MenuItemContent>
+        </MenuItem>
+
+        <MenuItem onClick={() => navigate('/account-deletion')}>
+          <MenuItemContent>
+            <MenuItemLeft>
+              <span>회원 탈퇴</span>
             </MenuItemLeft>
             <MenuItemRight>
               <i className="fa-solid fa-angle-right"></i>

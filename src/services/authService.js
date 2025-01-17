@@ -48,6 +48,26 @@ const authService = {
         console.error('Error logging out:', error);
         window.location.href = '/';
     }
+  },
+
+  async accountDeletion() {
+    try {
+      const response = await axiosInstance.delete('/auths/withdrawal',
+        {
+          headers: {
+            'Csrf-Protection-Uuid': import.meta.env.VITE_CSRF_PROTECTION_UUID,
+          },
+        }
+      );
+
+      localStorage.removeItem('accessToken');
+      alert('회원탈퇴가 완료되었습니다.');
+      window.location.href = '/'; 
+
+      return response;
+    } catch (error) {
+      alert('회원탈퇴에 실패했습니다. 다시 시도해주세요.');
+    }
   }
 };
 

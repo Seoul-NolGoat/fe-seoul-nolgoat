@@ -29,11 +29,11 @@ const Login = () => {
       {error && <ErrorMessage>{error}</ErrorMessage>}
       <KakaoLoginButton onClick={handleKakaoLogin}>
         <KakaoIcon src={kakaoLogo} alt="Kakao Logo" />
-        Login with Kakao
+        카카오 로그인
       </KakaoLoginButton>
       <GoogleLoginButton onClick={handleGoogleLogin}>
         <GoogleIcon src={googleLogo} alt="Google Logo" />
-        Login with Google
+        구글 로그인
       </GoogleLoginButton>
     </LoginContainer>
   );
@@ -94,11 +94,13 @@ const SocialLoginButton = styled.button`
 const KakaoLoginButton = styled(SocialLoginButton)`
   background-color: #ffe609;
   color: #371d1e;
+  font-family: "Jua", serif;
 `;
 
 const GoogleLoginButton = styled(SocialLoginButton)`
   background-color: #f0f0f0;
   color: #000000;
+  font-family: "Jua", serif;
 `;
 
 const KakaoIcon = styled.img`

@@ -13,6 +13,7 @@ import LoginSuccess from './pages/LoginSuccess';
 import StoreDetail from './pages/StoreDetail';
 import StoreSearch from './pages/StoreSearch'
 import Mypage from './pages/Mypage';
+import MyReview from './pages/MyReview';
 import Login from './pages/Login';
 import AccountDeletion from './pages/AccountDeletion';
 
@@ -117,6 +118,11 @@ function AppContent({ handleLogout, handleAccountDeletion }) {
             <Route path="/mypage" element={
               <ProtectedRoute>
                 <Mypage handleLogout={handleLogout} />
+              </ProtectedRoute>
+            } />
+            <Route path="/my-review" element={
+              <ProtectedRoute>
+                <MyReview />
               </ProtectedRoute>
             } />
             <Route path="/account-deletion" element={

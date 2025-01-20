@@ -21,7 +21,7 @@ const Mypage = ({ handleLogout }) => {
       </ProfileCard>
 
       <MenuList>
-        <MenuItem>
+        <MenuItem onClick={() => navigate('/my-review')}>
           <MenuItemContent>
             <MenuItemLeft>
               <span>내가 쓴 리뷰</span>

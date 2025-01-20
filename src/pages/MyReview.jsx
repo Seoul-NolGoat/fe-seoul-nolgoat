@@ -11,6 +11,19 @@ const MyReview = () => {
   const [isLoading, setIsLoading] = useState(false);
   const observerTarget = useRef(null);
 
+  const handleDeleteReview = async (reviewId) => {
+    const confirmDelete = window.confirm('리뷰를 삭제하시겠습니까?');
+    if (confirmDelete) {
+      try {
+        await axiosInstance.delete(`/reviews/${reviewId}`);
+        setReviews(prevReviews => prevReviews.filter(review => review.id !== reviewId));
+        alert('리뷰가 삭제되었습니다.');
+      } catch (error) {
+        console.error('Error deleting review:', error);
+      }
+    }
+  };
+
   const fetchReviews = async () => {
     if (isLoading) return;
 

@@ -10,15 +10,15 @@ const NoticeDetail = ({ notice, onEditClick, onBackClick }) => {
   const [noticeDetails, setNoticeDetails] = useState(null);
 
   useEffect(() => {
-    if (notice && notice.id) {
-      fetchNoticeDetails(notice.id);
-      incrementViews(notice.id); 
+    if (notice && notice.noticeId) {
+      fetchNoticeDetails(notice.noticeId);
+      incrementViews(notice.noticeId); 
     }
   }, [notice]);
 
-  const fetchNoticeDetails = (id) => {
+  const fetchNoticeDetails = (noticeId) => {
     axiosInstance
-      .get(`/notices/${id}`)
+      .get(`/notices/${noticeId}`)
       .then((response) => {
         setNoticeDetails(response.data);
       })

@@ -101,7 +101,7 @@ const StoreSearch = () => {
         ) : (
           <>
             {results.map((store) => (
-              <StoreItem key={store.id} to={`/store/${store.id}`}>
+              <StoreItem key={store.storeId} to={`/store/${store.storeId}`}>
                 <StoreInfoRow>
                   <StoreName>{store.name}</StoreName>
                   <Category>{store.category}</Category>

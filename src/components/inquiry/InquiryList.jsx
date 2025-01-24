@@ -30,7 +30,7 @@ const InquiryList = ({ inquiries, onInquiryClick, onWriteClick }) => {
           </thead>
           <tbody>
             {sortedInquiries.map((inquiry) => (
-              <tr key={inquiry.id} onClick={() => onInquiryClick(inquiry)}>
+              <tr key={inquiry.inquiryId} onClick={() => onInquiryClick(inquiry)}>
                 <td>
                   {inquiry.title}
                   {!inquiry.isPublic && (

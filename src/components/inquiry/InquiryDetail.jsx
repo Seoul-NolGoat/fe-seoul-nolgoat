@@ -8,14 +8,14 @@ const InquiryDetail = ({ inquiry, onEditClick, onBackClick }) => {
   const [inquiryDetails, setInquiryDetails] = useState(null);
   
   useEffect(() => {
-    if (inquiry && inquiry.id) {
-      fetchInquiryDetails(inquiry.id);
+    if (inquiry && inquiry.inquiryId) {
+      fetchInquiryDetails(inquiry.inquiryId);
     }
   }, [inquiry]);
 
-  const fetchInquiryDetails = (id) => {
+  const fetchInquiryDetails = (inquiryId) => {
     axiosInstance
-      .get(`/inquiries/${id}`)
+      .get(`/inquiries/${inquiryId}`)
       .then((response) => {
         setInquiryDetails(response.data);
       })

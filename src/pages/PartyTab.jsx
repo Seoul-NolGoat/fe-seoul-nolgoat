@@ -1,12 +1,23 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Parties from '../components/parties/Parties';
+import PartyDetail from '../components/parties/PartyDetail';
+import PartyCreate from '../components/parties/PartyCreate';
 
-const NoticeAndInquiryTabs = () => {
+const PartyTab = () => {
   const [activeTab, setActiveTab] = useState('parties'); 
+  const [selectedPartyId, setSelectedPartyId] = useState(null); // 선택된 파티 ID
+  const [showCreateForm, setShowCreateForm] = useState(false); 
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
+    setSelectedPartyId(null);
+    setShowCreateForm(false);
+  };
+
+  const handleCreateParty = () => {
+    setShowCreateForm(true);
+    setActiveTab(null); 
   };
 
   return (
@@ -14,27 +25,45 @@ const NoticeAndInquiryTabs = () => {
       <TabHeader>
         <TabItem
           active={activeTab === 'parties'}
-          onClick={() => handleTabClick('parties')}
+          onClick={() => { handleTabClick('parties'); setSelectedPartyId(null); }}
         >
           파티
         </TabItem>
         <TabItem
           active={activeTab === 'joinedParties'}
-          onClick={() => handleTabClick('joinedParties')}
+          onClick={() => { handleTabClick('joinedParties'); setSelectedPartyId(null); }}
         >
           참여한 파티
         </TabItem>
         <TabItem
           active={activeTab === 'myParties'}
-          onClick={() => handleTabClick('myParties')}
+          onClick={() => { handleTabClick('myParties'); setSelectedPartyId(null); }}
         >
           내 파티
         </TabItem>
       </TabHeader>
 
       <TabContent>
-        {activeTab === 'parties' && <Parties />}
+        {showCreateForm ? (
+          <PartyCreate onCancel={() => setShowCreateForm(false)} />
+        ) : selectedPartyId ? (
+          <PartyDetail
+            partyId={selectedPartyId}
+            onBack={() => setSelectedPartyId(null)} 
+          />
+        ) : (
+          <Parties 
+            onPartyClick={(partyId) => { setSelectedPartyId(partyId); setActiveTab(null);}} 
+            onCreateParty={handleCreateParty}
+            partyType={
+              activeTab === 'parties' ? 'all' : 
+              activeTab === 'joinedParties' ? 'joined' : 
+              activeTab === 'myParties' ? 'my' : 'all'
+            } 
+          />
+        )}
       </TabContent>
+
     </TabPageContainer>
   );
 };
@@ -71,4 +100,4 @@ const TabContent = styled.div`
   margin-top: 15px;
 `;
 
-export default NoticeAndInquiryTabs;
+export default PartyTab;

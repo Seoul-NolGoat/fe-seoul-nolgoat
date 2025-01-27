@@ -12,6 +12,7 @@ import NoticeInquiryTab from './pages/NoticeInquiryTab';
 import LoginSuccess from './pages/LoginSuccess';
 import StoreDetail from './pages/StoreDetail';
 import StoreSearch from './pages/StoreSearch'
+import PartyTab from './pages/PartyTab'
 import Mypage from './pages/Mypage';
 import MyReview from './pages/MyReview';
 import Login from './pages/Login';
@@ -113,6 +114,11 @@ function AppContent({ handleLogout, handleAccountDeletion }) {
             <Route path="/store/:id" element={
               <ProtectedRoute>
                 <StoreDetail />
+              </ProtectedRoute>
+            } />
+            <Route path="/party-tab" element={
+              <ProtectedRoute>
+                <PartyTab />
               </ProtectedRoute>
             } />
             <Route path="/mypage" element={

@@ -17,7 +17,7 @@ const BottomNavigation = () => {
         <i className="fa-solid fa-route"></i>
         조합
       </NavItem>
-      <NavItem to="/party">
+      <NavItem to="/party-tab">
         <i className="fas fa-users"></i>
         파티
       </NavItem>

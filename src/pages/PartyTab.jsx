@@ -3,16 +3,19 @@ import styled from 'styled-components';
 import Parties from '../components/parties/Parties';
 import PartyDetail from '../components/parties/PartyDetail';
 import PartyCreate from '../components/parties/PartyCreate';
+import PartyEdit from '../components/parties/PartyEdit';
 
 const PartyTab = () => {
   const [activeTab, setActiveTab] = useState('parties'); 
-  const [selectedPartyId, setSelectedPartyId] = useState(null); // 선택된 파티 ID
+  const [selectedPartyId, setSelectedPartyId] = useState(null); 
   const [showCreateForm, setShowCreateForm] = useState(false); 
+  const [showEditForm, setShowEditForm] = useState(false);
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
     setSelectedPartyId(null);
     setShowCreateForm(false);
+    setShowEditForm(false);
   };
 
   const handleCreateParty = () => {
@@ -46,10 +49,19 @@ const PartyTab = () => {
       <TabContent>
         {showCreateForm ? (
           <PartyCreate onCancel={() => setShowCreateForm(false)} />
+        ) : showEditForm ? (
+          <PartyEdit 
+            partyId={selectedPartyId}
+            onCancel={() => {
+              setShowEditForm(false);
+              setSelectedPartyId(null);
+            }}
+          />
         ) : selectedPartyId ? (
           <PartyDetail
             partyId={selectedPartyId}
             onBack={() => setSelectedPartyId(null)} 
+            onEdit={() => setShowEditForm(true)}
           />
         ) : (
           <Parties 

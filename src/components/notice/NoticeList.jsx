@@ -22,7 +22,7 @@ const NoticeList = ({ notices, onNoticeClick, onWriteClick, userId }) => {
               const daysDiff = timeDiff / (1000 * 3600 * 24); 
 
               return (
-                <tr key={notice.id} onClick={() => onNoticeClick(notice)}>
+                <tr key={notice.noticeId} onClick={() => onNoticeClick(notice)}>
                   <td>{sortedNotices.length - index}</td>
                   <td>
                     {notice.title}

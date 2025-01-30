@@ -243,7 +243,7 @@ const StoreDetail = () => {
                               />
                               {activeReviewOptions === review.id && (
                                 <ReviewOptionsMenu>
-                                  <DeleteReviewButton onClick={() => handleDeleteReview(review.id)}>삭제</DeleteReviewButton>
+                                  <DeleteReviewButton onClick={() => handleDeleteReview(review.reviewId)}>삭제</DeleteReviewButton>
                                 </ReviewOptionsMenu>
                               )}
                             </ReviewOptions>

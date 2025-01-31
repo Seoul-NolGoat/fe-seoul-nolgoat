@@ -79,10 +79,10 @@ const StoreDetail = () => {
     if (confirmDelete) {
       try {
         await axiosInstance.delete(`/reviews/${reviewId}`);
-        setStore((prevStore) => ({
-          ...prevStore,
-          reviews: prevStore.reviews.filter((review) => review.id !== reviewId),
-        }));
+        // setStore((prevStore) => ({
+        //   ...prevStore,
+        //   reviews: prevStore.reviews.filter((review) => review.reviewId !== reviewId),
+        // }));
         alert('리뷰가 삭제되었습니다.');
         window.location.reload();
       } catch (error) {

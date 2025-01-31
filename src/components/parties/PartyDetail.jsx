@@ -1,12 +1,17 @@
 import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import axiosInstance from '../../services/axiosInstance';
-import { format } from 'date-fns';
+import { UserContext } from '../../contexts/UserContext'; 
+import { format, formatDistanceToNow } from 'date-fns';
 import { ko } from 'date-fns/locale';
+import moreIcon from '../../assets/store-detail-icons/three-dots.png';
 
 const PartyDetail = ({ partyId, onBack, onEdit }) => {
   const [partyDetails, setPartyDetails] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [commentContent, setCommentContent] = useState('');
+  const [activeCommentOptions, setActiveCommentOptions] = useState(null);
+  const { userProfile } = useContext(UserContext); 
 
   useEffect(() => {
     fetchPartyDetails();
@@ -77,9 +82,57 @@ const PartyDetail = ({ partyId, onBack, onEdit }) => {
     }
   };
 
+  const handleCommentSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (!commentContent.trim()) {
+      alert('댓글 내용을 입력해주세요.');
+      return;
+    }
+  
+    try {
+      await axiosInstance.post(`/comments/parties/${partyId}`, {
+        content: commentContent
+      });
+      setCommentContent(''); 
+      fetchPartyDetails(); 
+    } catch (error) {
+      const errorMessage = error.response?.data?.message || '댓글 작성에 실패했습니다.';
+      alert(errorMessage);
+    }
+  };
+
+  const handleDeleteComment = async (commentId) => {
+    const confirmDelete = window.confirm('댓글을 삭제하시겠습니까?');
+    if (confirmDelete) {
+      try {
+        await axiosInstance.delete(`/comments/${commentId}`);
+        fetchPartyDetails();
+      } catch (error) {
+        const errorMessage = error.response?.data?.message || '댓글 작성에 실패했습니다.';
+        alert(errorMessage);
+      }
+    }
+  };
+
+  const toggleCommentOptions = (commentId) => {
+    setActiveCommentOptions((prev) => (prev === commentId ? null : commentId));
+  };
+
   const formatToKoreanDate = (isoDate) => {
     return format(new Date(isoDate), "yyyy-MM-dd a hh시 mm분", { locale: ko });
   }
+
+  const TimeAgo = ( isoDate ) => {
+    let timeAgo = formatDistanceToNow(new Date(isoDate), {
+      addSuffix: true,
+      locale: ko
+    });
+
+    timeAgo = timeAgo.replace(' 미만', '').replace('약 ', '');
+  
+    return timeAgo;
+  };
 
   if (loading) return <LoadingContainer>loading...</LoadingContainer>;
   if (!partyDetails) return null;
@@ -176,7 +229,61 @@ const PartyDetail = ({ partyId, onBack, onEdit }) => {
           </>
         )}
       </ContentSection>
+
       <Divider />
+
+      <CommentForm onSubmit={handleCommentSubmit}>
+        <CommentTextArea
+          value={commentContent}
+          onChange={(e) => setCommentContent(e.target.value)}
+          placeholder="댓글을 입력해주세요..."
+        />
+        <CommentSubmitButton 
+          type="submit"
+          backgroundColor="#0066CC"
+          color="white"
+          hoverColor="#005bb5"
+        >
+        <i className="fa-solid fa-paper-plane"></i>
+        </CommentSubmitButton>
+      </CommentForm>
+      <CommentSection>
+        {partyDetails.comments.length > 0 ? (
+          partyDetails.comments.map(comment => (
+            <CommentItem key={comment.commentId}>
+              <CommentProfileImage src={comment.writerProfileImage} alt={comment.writerNickname} />
+              <CommentContent>
+                <CommentHeader>
+                  <CommentNickname>{comment.writerNickname}</CommentNickname>
+                  <Separator/>
+                  <CommentDate>{TimeAgo(comment.createdDate)}</CommentDate>
+                </CommentHeader>
+                {userProfile.userId === comment.writerId && (
+                  <CommentOptions>
+                    <MoreIcon
+                      src={moreIcon}
+                      alt="More options"
+                      onClick={() => toggleCommentOptions(comment.commentId)}
+                    />
+                    {activeCommentOptions === comment.commentId && (
+                      <CommentOptionsMenu>
+                        <DeleteReviewButton onClick={() => handleDeleteComment(comment.commentId)}>삭제</DeleteReviewButton>
+                      </CommentOptionsMenu>
+                    )}
+                  </CommentOptions>
+                )}
+                {comment.isDeleted ? (
+                  <DeletedCommentText>{comment.content}</DeletedCommentText>
+                ) : (
+                  <CommentText>{comment.content}</CommentText>
+                )}
+              </CommentContent>
+            </CommentItem>
+          ))
+        ) : (
+          <p>댓글이 없습니다.</p>
+        )}
+      </CommentSection>
     </Container>
   );
 };
@@ -328,6 +435,164 @@ const Divider = styled.div`
   height: 13px; 
   margin: 10px 0; 
   background-color: #f8f9fa; 
+`;
+
+const CommentForm = styled.form`
+  padding: 20px;
+  border-bottom: 1px solid #eaeaea;
+  position: sticky;
+  top: -1px;
+  z-index: 100;
+  background-color: #fff;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+`;
+
+const CommentTextArea = styled.textarea`
+  height: 23px;
+  padding: 8px;
+  border: 1px solid #ececec;
+  border-radius: 4px;
+  flex: 1;
+  font-size: 14px;
+  line-height: 1.5;
+  resize: vertical;
+  overflow-y: auto;
+  background-color: #f8f8f8;
+  font-family: "Nanum Gothic", sans-serif;
+
+  &:focus {
+    height: 65px;
+    outline: none;
+    border-color: #333;
+  }
+`;
+
+const CommentSubmitButton = styled.button`
+  width: 35px;
+  height: 35px;
+  margin-top: 3px;
+  border: none;
+  border-radius: 50%;
+  background-color: ${props => props.backgroundColor || '#0066CC'};
+  color: ${props => props.color || 'white'};
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: ${props => props.hoverColor || '#005bb5'};
+  }
+
+  i {
+    font-size: 15px;
+  }
+`;
+
+const CommentSection = styled.div`
+  margin: 10px 0px;
+  padding: 0px 20px;
+`;
+
+const CommentItem = styled.div`
+  margin-bottom: 5px;
+  padding: 8px 0px;
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+
+  &:last-child {
+    border-bottom: none;
+  }
+`;
+
+const CommentProfileImage = styled.img`
+  width: 25px;
+  height: 25px;
+  margin-right: 15px;
+  border-radius: 50%;
+`;
+
+const CommentContent = styled.div`
+  flex: 1;
+  text-align: left; 
+`;
+
+const CommentHeader = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const CommentNickname = styled.span`
+  font-size: 0.9rem;
+  font-weight: bold;
+`;
+
+const Separator = styled.span`
+  width: 1px;
+  height: 11px;
+  margin: 0 8px; 
+  background-color: #ccc; 
+`;
+
+const CommentDate = styled.span`
+  margin-bottom: 2px;
+  font-size: 0.8rem; 
+  color: #999; 
+`;
+
+const CommentText = styled.p`
+  margin: 8px 0;
+  text-align: left; 
+  white-space: pre-wrap;
+`;
+
+const CommentOptions = styled.div`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+`;
+
+const MoreIcon = styled.img`
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+`;
+
+const CommentOptionsMenu = styled.div`
+  position: absolute;
+  left: -60px;
+  top: -3px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  z-index: 1;
+`;
+
+const DeleteReviewButton = styled.button`
+  width: 55px;
+  padding: 5px 10px;
+  border: none;
+  background-color: transparent;
+  color: #f00;
+  cursor: pointer;
+  text-align: center;
+
+  &:hover {
+    background-color: #f8f8f8;
+    border-radius: 5px;
+  }
+`;
+
+const DeletedCommentText = styled.div`
+  padding: 8px 0;
+  color: #999;
+  font-style: italic;
+  font-size: 14px;
+  text-align: left;
 `;
 
 export default PartyDetail;

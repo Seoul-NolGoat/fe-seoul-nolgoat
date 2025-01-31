@@ -16,7 +16,7 @@ const MyReview = () => {
     if (confirmDelete) {
       try {
         await axiosInstance.delete(`/reviews/${reviewId}`);
-        setReviews(prevReviews => prevReviews.filter(review => review.id !== reviewId));
+        setReviews(prevReviews => prevReviews.filter(review => review.reviewId !== reviewId));
         alert('리뷰가 삭제되었습니다.');
       } catch (error) {
         console.error('Error deleting review:', error);
@@ -73,7 +73,7 @@ const MyReview = () => {
           <ReviewItem key={review.id}>
             <StoreHeader>
               <StoreName to={`/store/${review.storeId}`}>{review.storeName}</StoreName>
-              <DeleteButton onClick={() => handleDeleteReview(review.id)}>
+              <DeleteButton onClick={() => handleDeleteReview(review.reviewId)}>
                 <i className="fa-solid fa-x"></i>
               </DeleteButton>
             </StoreHeader>

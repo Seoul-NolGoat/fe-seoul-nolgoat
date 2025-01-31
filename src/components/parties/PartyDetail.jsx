@@ -273,7 +273,7 @@ const PartyDetail = ({ partyId, onBack, onEdit }) => {
                   </CommentOptions>
                 )}
                 {comment.isDeleted ? (
-                  <DeletedCommentText>삭제된 메시지입니다</DeletedCommentText>
+                  <DeletedCommentText>{comment.content}</DeletedCommentText>
                 ) : (
                   <CommentText>{comment.content}</CommentText>
                 )}

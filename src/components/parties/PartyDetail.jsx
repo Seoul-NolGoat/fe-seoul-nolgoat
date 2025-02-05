@@ -258,7 +258,7 @@ const PartyDetail = ({ partyId, onBack, onEdit }) => {
                   <Separator/>
                   <CommentDate>{TimeAgo(comment.createdDate)}</CommentDate>
                 </CommentHeader>
-                {userProfile.userId === comment.writerId && (
+                {(userProfile.userId === comment.writerId && !comment.isDeleted) && (
                   <CommentOptions>
                     <MoreIcon
                       src={moreIcon}

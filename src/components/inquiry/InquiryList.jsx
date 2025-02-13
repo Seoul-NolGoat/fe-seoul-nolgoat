@@ -1,11 +1,16 @@
 import React from 'react';
 import '../../pages/Inquiries.css';
 import lockIcon from '../../assets/inquiries-icons/lock.png';
+import { format } from 'date-fns';
 
 const InquiryList = ({ inquiries, onInquiryClick, onWriteClick }) => {
 
   const sortedInquiries = [...inquiries].sort((a, b) => new Date(b.createDate) - new Date(a.createDate));
 
+  const formatToDate = (isoDate) => {
+    return format(new Date(isoDate), "yyyy-MM-dd"); 
+  };
+  
   return (
     <div className="inquiries-list">
       {/* <h2 className="inquiries-title">게시판</h2> */}
@@ -38,7 +43,7 @@ const InquiryList = ({ inquiries, onInquiryClick, onWriteClick }) => {
                   )}
                 </td>
                 <td>{inquiry.userNickname}</td>
-                <td>{inquiry.createDate}</td>
+                <td>{formatToDate(inquiry.createDate)}</td>
                 <td>{inquiry.isPublic ? '공개' : '비공개'}</td>
               </tr>
             ))}

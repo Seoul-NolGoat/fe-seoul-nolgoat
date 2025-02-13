@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from 'styled-components';
+import config from '../config/config.js';
 
 import kakaoLogo from '../assets/login-icons/kakao-logo.png';
 import googleLogo from '../assets/login-icons/google-logo.png';
@@ -11,11 +12,11 @@ const Login = () => {
   const [error, setError] = useState("");
 
   const handleKakaoLogin = () => {
-    window.location.href = "https://server.nolgoat.site/oauth2/authorization/kakao";
+    window.location.href = `${config.BASE_URL}/oauth2/authorization/kakao`;
   };
 
   const handleGoogleLogin = () => {
-    window.location.href = "https://server.nolgoat.site/oauth2/authorization/google";
+    window.location.href = `${config.BASE_URL}/oauth2/authorization/google`;
   };
 
   return (

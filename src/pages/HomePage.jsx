@@ -26,7 +26,7 @@ const HomePage = () => {
           <Image src={CombineImage} alt="조합" />
           조합
         </MenuItem>
-        <MenuItem onClick={() => navigate('/party')}>
+        <MenuItem onClick={() => navigate('/party-tab')}>
           <Image src={PartyImage} alt="파티" />
           파티
         </MenuItem>

@@ -1,12 +1,12 @@
 import axios from 'axios';
-import API_BASE_URL from '../config.js';
+import config from '../config/config';
 import axiosInstance from '../services/axiosInstance';
 
 const authService = {
   // Refresh Token을 사용하여 새로운 Access Token과 Refresh Token을 발급받는 함수
   async refreshToken() {
     try {
-      const response = await axios.post(`${API_BASE_URL}/auths/token/reissue`, {},{
+      const response = await axios.post(`${config.BASE_URL}/api/auths/token/reissue`, {},{
         withCredentials: true,
         headers: {
           'CSRF-Protection-UUID': import.meta.env.VITE_CSRF_PROTECTION_UUID, 

@@ -242,7 +242,10 @@ const Parties = ({ onPartyClick, onCreateParty, partyType = 'all' }) => {
                     </DetailItem>
                   </CardHeaderLeft>
                   <DetailItem>
-                    {party.hostNickname} · {TimeAgo(party.createdDate)}
+                    {partyType !== 'my' && (
+                      <>{party.hostNickname} · </>
+                    )}
+                    {TimeAgo(party.createdDate)}
                   </DetailItem>
                 </CardHeader>
               </PartyCard>

@@ -115,6 +115,20 @@ const PartyDetail = ({ partyId, onBack, onEdit }) => {
     }
   };
 
+  const handleBanParticipant = async (userId) => {
+    const confirmBan = window.confirm("정말로 이 참여자를 추방하시겠습니까?");
+    if (!confirmBan) return;
+  
+    try {
+      await axiosInstance.delete(`/parties/${partyId}/participants/${userId}`);
+      alert("참여자가 성공적으로 추방되었습니다.");
+      fetchPartyDetails();
+    } catch (error) {
+      const errorMessage = error.response?.data?.message || "참여자 추방에 실패했습니다.";
+      alert(errorMessage);
+    }
+  };
+
   const toggleCommentOptions = (commentId) => {
     setActiveCommentOptions((prev) => (prev === commentId ? null : commentId));
   };
@@ -183,6 +197,7 @@ const PartyDetail = ({ partyId, onBack, onEdit }) => {
                 {(partyDetails.host && !partyDetails.closed) && (
                   <BanIcon 
                     className="fa-solid fa-ban" 
+                    onClick={() => handleBanParticipant(participant.participantUserId)}
                   />
                 )}
                 <ParticipantName>{participant.participantNickname}</ParticipantName>
@@ -380,7 +395,7 @@ const CrownIcon = styled.i`
   position: absolute;
   top: 0;
   right: 0;
-  font-size: 15px;
+  font-size: 14px;
   color: gold;
   background-color: #ffffff;
 `;

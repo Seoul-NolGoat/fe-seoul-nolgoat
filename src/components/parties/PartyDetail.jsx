@@ -171,7 +171,7 @@ const PartyDetail = ({ partyId, onBack, onEdit }) => {
                 src={partyDetails.hostProfileImage || '/default-profile.png'} 
                 alt={partyDetails.hostNickname} 
               />
-              <CrownIcon className="fa-solid fa-crown"></CrownIcon>
+              <CrownIcon className="fa-solid fa-crown" />
               <HostName>{partyDetails.hostNickname}</HostName>
             </ParticipantCardInline>
             {partyDetails.participants.map(participant => (
@@ -180,6 +180,11 @@ const PartyDetail = ({ partyId, onBack, onEdit }) => {
                   src={participant.participantProfileImage || '/default-profile.png'} 
                   alt={participant.participantNickname} 
                 />
+                {(partyDetails.host && !partyDetails.closed) && (
+                  <BanIcon 
+                    className="fa-solid fa-ban" 
+                  />
+                )}
                 <ParticipantName>{participant.participantNickname}</ParticipantName>
               </ParticipantCardInline>
             ))}
@@ -370,14 +375,30 @@ const ParticipantImage = styled.img`
 `;
 
 const CrownIcon = styled.i`
-  padding: 2px;
+  padding: 3px 2px;
   border-radius: 50%;
   position: absolute;
   top: 0;
   right: 0;
   font-size: 15px;
   color: gold;
-  background-color: white;
+  background-color: #ffffff;
+`;
+
+const BanIcon = styled.i`
+  padding: 2px;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 14px;
+  color: red;
+  background-color: #ffffff;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f1f1f1;
+  }
 `;
 
 const ParticipantName = styled.span`

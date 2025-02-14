@@ -27,6 +27,7 @@ jobs:
           echo "VITE_KAKAO_MAP_API_KEY=${{ secrets.VITE_KAKAO_MAP_API_KEY }}" >> .env
           echo "VITE_GENERATE_SOURCEMAP=${{ secrets.VITE_GENERATE_SOURCEMAP }}" >> .env
           echo "VITE_CSRF_PROTECTION_UUID=${{ secrets.VITE_CSRF_PROTECTION_UUID }}" >> .env
+          echo "VITE_ENV=${{ secrets.VITE_ENV }}" >> .env
       
       - name: Build
         run: npm run build

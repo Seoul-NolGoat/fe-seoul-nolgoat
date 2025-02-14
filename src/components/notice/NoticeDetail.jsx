@@ -4,6 +4,7 @@ import axiosInstance from '../../services/axiosInstance';
 import { UserContext } from '../../contexts/UserContext';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
+import { format } from 'date-fns';
 
 const NoticeDetail = ({ notice, onEditClick, onBackClick }) => {
   const { userProfile } = useContext(UserContext);
@@ -49,6 +50,10 @@ const NoticeDetail = ({ notice, onEditClick, onBackClick }) => {
     }
   };
 
+  const formatToDate = (isoDate) => {
+    return format(new Date(isoDate), "yyyy-MM-dd"); 
+  };
+
   if (!noticeDetails) {
     return <div>Loading...</div>;
   }
@@ -61,7 +66,7 @@ const NoticeDetail = ({ notice, onEditClick, onBackClick }) => {
             <th>작성자</th>
             <td>{noticeDetails.userNickname}</td>
             <th>등록일</th>
-            <td>{noticeDetails.createDate}</td>
+            <td>{formatToDate(noticeDetails.createDate)}</td>
             <th>조회수</th>
             <td>{noticeDetails.views}</td>
           </tr>

@@ -1,9 +1,9 @@
 import axios from 'axios';
 import authService from './authService';
-import API_BASE_URL from '../config.js';
+import config from '../config/config.js';
 
 const axiosInstance = axios.create({
-  baseURL: API_BASE_URL,
+  baseURL: `${config.BASE_URL}/api`,
   withCredentials: true 
 });
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import '../../pages/Inquiries.css';
 import axiosInstance from '../../services/axiosInstance';
 import { UserContext } from '../../contexts/UserContext';
+import { format } from 'date-fns';
 
 const InquiryDetail = ({ inquiry, onEditClick, onBackClick }) => {
   const { userProfile } = useContext(UserContext);
@@ -38,6 +39,10 @@ const InquiryDetail = ({ inquiry, onEditClick, onBackClick }) => {
     }
   };
 
+  const formatToDate = (isoDate) => {
+    return format(new Date(isoDate), "yyyy-MM-dd"); 
+  };
+
   if (!inquiryDetails) {
     return <div>Loading...</div>;
   }
@@ -50,7 +55,7 @@ const InquiryDetail = ({ inquiry, onEditClick, onBackClick }) => {
             <th>작성자</th>
             <td>{inquiryDetails.userNickname}</td>
             <th>등록일</th>
-            <td>{inquiryDetails.createDate}</td>
+            <td>{formatToDate(inquiryDetails.createDate)}</td>
             <th>잠금</th>
             <td>{inquiryDetails.isPublic ? '공개' : '비공개'}</td>
           </tr>

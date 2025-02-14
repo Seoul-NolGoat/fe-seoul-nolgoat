@@ -2,11 +2,16 @@ import React from 'react';
 import '../../pages/Notices.css';
 import eyeIcon from '../../assets/notices-icons/eye.png'; 
 import newIcon from '../../assets/notices-icons/new.png'; 
+import { format } from 'date-fns';
 
 const NoticeList = ({ notices, onNoticeClick, onWriteClick, userId }) => {
 
   const sortedNotices = [...notices].sort((a, b) => new Date(b.createDate) - new Date(a.createDate));
   const currentDate = new Date();
+
+  const formatToDate = (isoDate) => {
+    return format(new Date(isoDate), "yyyy-MM-dd"); 
+  };
 
   return (
     <div className="notices-list">
@@ -30,7 +35,7 @@ const NoticeList = ({ notices, onNoticeClick, onWriteClick, userId }) => {
                       <img src={newIcon} alt="New icon" className="new-icon" />
                     )}
                   </td>
-                  <td>{notice.createDate}</td>
+                  <td>{formatToDate(notice.createDate)}</td>
                   <td>
                     <img src={eyeIcon} alt="View icon" className="eye-icon" />
                     {notice.views}

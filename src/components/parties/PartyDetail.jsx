@@ -115,6 +115,20 @@ const PartyDetail = ({ partyId, onBack, onEdit }) => {
     }
   };
 
+  const handleBanParticipant = async (userId) => {
+    const confirmBan = window.confirm("정말로 이 참여자를 추방하시겠습니까?");
+    if (!confirmBan) return;
+  
+    try {
+      await axiosInstance.delete(`/parties/${partyId}/participants/${userId}`);
+      alert("참여자가 성공적으로 추방되었습니다.");
+      fetchPartyDetails();
+    } catch (error) {
+      const errorMessage = error.response?.data?.message || "참여자 추방에 실패했습니다.";
+      alert(errorMessage);
+    }
+  };
+
   const toggleCommentOptions = (commentId) => {
     setActiveCommentOptions((prev) => (prev === commentId ? null : commentId));
   };
@@ -171,7 +185,7 @@ const PartyDetail = ({ partyId, onBack, onEdit }) => {
                 src={partyDetails.hostProfileImage || '/default-profile.png'} 
                 alt={partyDetails.hostNickname} 
               />
-              <CrownIcon className="fa-solid fa-crown"></CrownIcon>
+              <CrownIcon className="fa-solid fa-crown" />
               <HostName>{partyDetails.hostNickname}</HostName>
             </ParticipantCardInline>
             {partyDetails.participants.map(participant => (
@@ -180,6 +194,12 @@ const PartyDetail = ({ partyId, onBack, onEdit }) => {
                   src={participant.participantProfileImage || '/default-profile.png'} 
                   alt={participant.participantNickname} 
                 />
+                {(partyDetails.host && !partyDetails.closed) && (
+                  <BanIcon 
+                    className="fa-solid fa-ban" 
+                    onClick={() => handleBanParticipant(participant.participantUserId)}
+                  />
+                )}
                 <ParticipantName>{participant.participantNickname}</ParticipantName>
               </ParticipantCardInline>
             ))}
@@ -258,7 +278,7 @@ const PartyDetail = ({ partyId, onBack, onEdit }) => {
                   <Separator/>
                   <CommentDate>{TimeAgo(comment.createdDate)}</CommentDate>
                 </CommentHeader>
-                {userProfile.userId === comment.writerId && (
+                {(userProfile.userId === comment.writerId && !comment.isDeleted) && (
                   <CommentOptions>
                     <MoreIcon
                       src={moreIcon}
@@ -370,14 +390,30 @@ const ParticipantImage = styled.img`
 `;
 
 const CrownIcon = styled.i`
+  padding: 3px 2px;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 14px;
+  color: gold;
+  background-color: #ffffff;
+`;
+
+const BanIcon = styled.i`
   padding: 2px;
   border-radius: 50%;
   position: absolute;
   top: 0;
   right: 0;
-  font-size: 15px;
-  color: gold;
-  background-color: white;
+  font-size: 14px;
+  color: red;
+  background-color: #ffffff;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f1f1f1;
+  }
 `;
 
 const ParticipantName = styled.span`

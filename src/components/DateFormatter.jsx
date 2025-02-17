@@ -1,6 +1,10 @@
 import { format, formatDistanceToNow } from 'date-fns';
 import { ko } from 'date-fns/locale';
 
+export const formatToDate = (isoDate) => {
+  return format(new Date(isoDate), "yyyy-MM-dd"); 
+};
+
 export const formatToKoreanDate = (isoDate) => {
   return format(new Date(isoDate), "yyyy-MM-dd a hh시 mm분", { locale: ko });
 };
@@ -15,10 +19,3 @@ export const formatTimeAgo = (isoDate) => {
 
   return timeAgo;
 };
-
-const DateFormatter = {
-  formatToKoreanDate,
-  formatTimeAgo
-};
-
-export default DateFormatter;

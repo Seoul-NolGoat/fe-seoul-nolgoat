@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../pages/Inquiries.css';
 import lockIcon from '../../assets/inquiries-icons/lock.png';
-import { formatToDate } from '../DateFormatter';
+import { formatToDate } from '../../utils/DateFormatter';
 
 const InquiryList = ({ inquiries, onInquiryClick, onWriteClick }) => {
 

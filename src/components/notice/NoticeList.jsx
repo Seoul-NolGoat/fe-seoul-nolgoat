@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../pages/Notices.css';
-import { formatToDate } from '../DateFormatter';
+import { formatToDate } from '../../utils/DateFormatter';
 import eyeIcon from '../../assets/notices-icons/eye.png'; 
 import newIcon from '../../assets/notices-icons/new.png'; 
 

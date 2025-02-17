@@ -4,7 +4,7 @@ import axiosInstance from '../../services/axiosInstance';
 import { UserContext } from '../../contexts/UserContext';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
-import { formatToDate } from '../DateFormatter';
+import { formatToDate } from '../../utils/DateFormatter';
 
 const NoticeDetail = ({ notice, onEditClick, onBackClick }) => {
   const { userProfile } = useContext(UserContext);

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import axiosInstance from '../../services/axiosInstance';
 import { useNavigate } from 'react-router-dom';
-import { formatToDate, formatTimeAgo } from '../DateFormatter';
+import { formatToDate, formatTimeAgo } from '../../utils/DateFormatter';
 
 const Parties = ({ onPartyClick, onCreateParty, partyType = 'all' }) => {
   const [parties, setParties] = useState([]);

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import '../../pages/Inquiries.css';
 import axiosInstance from '../../services/axiosInstance';
 import { UserContext } from '../../contexts/UserContext';
-import { format } from 'date-fns';
+import { formatToDate } from '../DateFormatter';
 
 const InquiryDetail = ({ inquiry, onEditClick, onBackClick }) => {
   const { userProfile } = useContext(UserContext);
@@ -37,10 +37,6 @@ const InquiryDetail = ({ inquiry, onEditClick, onBackClick }) => {
           console.error('건의사항 삭제 중 에러 발생:', error);
         });
     }
-  };
-
-  const formatToDate = (isoDate) => {
-    return format(new Date(isoDate), "yyyy-MM-dd"); 
   };
 
   if (!inquiryDetails) {

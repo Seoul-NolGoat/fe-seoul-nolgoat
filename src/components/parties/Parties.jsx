@@ -2,8 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import axiosInstance from '../../services/axiosInstance';
 import { useNavigate } from 'react-router-dom';
-import { format, formatDistanceToNow } from 'date-fns';
-import { ko } from 'date-fns/locale';
+import { formatToDate, formatTimeAgo } from '../DateFormatter';
 
 const Parties = ({ onPartyClick, onCreateParty, partyType = 'all' }) => {
   const [parties, setParties] = useState([]);
@@ -119,21 +118,6 @@ const Parties = ({ onPartyClick, onCreateParty, partyType = 'all' }) => {
     fetchParties(nextPage);
   };
 
-  const formatToDate = (isoDate) => {
-    return format(new Date(isoDate), "yyyy-MM-dd"); 
-  };
-
-  const TimeAgo = ( isoDate ) => {
-    let timeAgo = formatDistanceToNow(new Date(isoDate), {
-      addSuffix: true,
-      locale: ko
-    });
-
-    timeAgo = timeAgo.replace(' 미만', '').replace('약 ', '');
-  
-    return timeAgo;
-  };
-
   return (
     <Container ref={containerRef}>
       {partyType === 'all' && (
@@ -245,7 +229,7 @@ const Parties = ({ onPartyClick, onCreateParty, partyType = 'all' }) => {
                     {partyType !== 'my' && (
                       <>{party.hostNickname} · </>
                     )}
-                    {TimeAgo(party.createdDate)}
+                    {formatTimeAgo(party.createdDate)}
                   </DetailItem>
                 </CardHeader>
               </PartyCard>

@@ -2,8 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import axiosInstance from '../../services/axiosInstance';
 import { UserContext } from '../../contexts/UserContext'; 
-import { format, formatDistanceToNow } from 'date-fns';
-import { ko } from 'date-fns/locale';
+import { formatToKoreanDate, formatTimeAgo } from '../DateFormatter';
 import moreIcon from '../../assets/store-detail-icons/three-dots.png';
 
 const PartyDetail = ({ partyId, onBack, onEdit }) => {
@@ -131,21 +130,6 @@ const PartyDetail = ({ partyId, onBack, onEdit }) => {
 
   const toggleCommentOptions = (commentId) => {
     setActiveCommentOptions((prev) => (prev === commentId ? null : commentId));
-  };
-
-  const formatToKoreanDate = (isoDate) => {
-    return format(new Date(isoDate), "yyyy-MM-dd a hh시 mm분", { locale: ko });
-  }
-
-  const TimeAgo = ( isoDate ) => {
-    let timeAgo = formatDistanceToNow(new Date(isoDate), {
-      addSuffix: true,
-      locale: ko
-    });
-
-    timeAgo = timeAgo.replace(' 미만', '').replace('약 ', '');
-  
-    return timeAgo;
   };
 
   if (loading) return <LoadingContainer>loading...</LoadingContainer>;
@@ -276,7 +260,7 @@ const PartyDetail = ({ partyId, onBack, onEdit }) => {
                 <CommentHeader>
                   <CommentNickname>{comment.writerNickname}</CommentNickname>
                   <Separator/>
-                  <CommentDate>{TimeAgo(comment.createdDate)}</CommentDate>
+                  <CommentDate>{formatTimeAgo(comment.createdDate)}</CommentDate>
                 </CommentHeader>
                 {(userProfile.userId === comment.writerId && !comment.isDeleted) && (
                   <CommentOptions>

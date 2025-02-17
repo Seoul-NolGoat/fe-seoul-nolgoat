@@ -1,20 +1,14 @@
 import React from 'react';
 import '../../pages/Inquiries.css';
 import lockIcon from '../../assets/inquiries-icons/lock.png';
-import { format } from 'date-fns';
+import { formatToDate } from '../DateFormatter';
 
 const InquiryList = ({ inquiries, onInquiryClick, onWriteClick }) => {
 
   const sortedInquiries = [...inquiries].sort((a, b) => new Date(b.createDate) - new Date(a.createDate));
 
-  const formatToDate = (isoDate) => {
-    return format(new Date(isoDate), "yyyy-MM-dd"); 
-  };
-  
   return (
     <div className="inquiries-list">
-      {/* <h2 className="inquiries-title">게시판</h2> */}
-
       <p className="inquiries-description">
         NolGoat을 더 나은 서비스로 만들기 위해 여러분의 소중한 의견을 남겨주세요. 
         서비스 이용 중 불편한 점이나 개선이 필요한 부분을 자유롭게 건의해주시면, 

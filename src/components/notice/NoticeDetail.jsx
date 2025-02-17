@@ -4,7 +4,7 @@ import axiosInstance from '../../services/axiosInstance';
 import { UserContext } from '../../contexts/UserContext';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
-import { format } from 'date-fns';
+import { formatToDate } from '../DateFormatter';
 
 const NoticeDetail = ({ notice, onEditClick, onBackClick }) => {
   const { userProfile } = useContext(UserContext);
@@ -48,10 +48,6 @@ const NoticeDetail = ({ notice, onEditClick, onBackClick }) => {
           console.error('게시물 삭제 중 에러 발생:', error);
         });
     }
-  };
-
-  const formatToDate = (isoDate) => {
-    return format(new Date(isoDate), "yyyy-MM-dd"); 
   };
 
   if (!noticeDetails) {

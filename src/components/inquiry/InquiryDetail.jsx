@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import '../../pages/Inquiries.css';
 import axiosInstance from '../../services/axiosInstance';
 import { UserContext } from '../../contexts/UserContext';
-import { formatToDate } from '../DateFormatter';
+import { formatToDate } from '../../utils/DateFormatter';
 
 const InquiryDetail = ({ inquiry, onEditClick, onBackClick }) => {
   const { userProfile } = useContext(UserContext);

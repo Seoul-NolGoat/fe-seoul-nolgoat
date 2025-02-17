@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import axiosInstance from '../../services/axiosInstance';
 import { UserContext } from '../../contexts/UserContext'; 
-import { formatToKoreanDate, formatTimeAgo } from '../DateFormatter';
+import { formatToKoreanDate, formatTimeAgo } from '../../utils/DateFormatter';
 import moreIcon from '../../assets/store-detail-icons/three-dots.png';
 
 const PartyDetail = ({ partyId, onBack, onEdit }) => {

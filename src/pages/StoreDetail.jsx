@@ -19,7 +19,7 @@ import { UserContext } from '../contexts/UserContext';
 import { Gallery, Item } from 'react-photoswipe-gallery';
 import 'photoswipe/dist/photoswipe.css';
 import RoadViewModal from '../components/RoadViewModal'; 
-import { formatTimeAgo } from '../components/DateFormatter';
+import { formatTimeAgo } from '../utils/DateFormatter';
 
 const { kakao } = window;
 

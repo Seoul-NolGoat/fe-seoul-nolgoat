@@ -1,17 +1,13 @@
 import React from 'react';
 import '../../pages/Notices.css';
+import { formatToDate } from '../DateFormatter';
 import eyeIcon from '../../assets/notices-icons/eye.png'; 
 import newIcon from '../../assets/notices-icons/new.png'; 
-import { format } from 'date-fns';
 
 const NoticeList = ({ notices, onNoticeClick, onWriteClick, userId }) => {
 
   const sortedNotices = [...notices].sort((a, b) => new Date(b.createDate) - new Date(a.createDate));
   const currentDate = new Date();
-
-  const formatToDate = (isoDate) => {
-    return format(new Date(isoDate), "yyyy-MM-dd"); 
-  };
 
   return (
     <div className="notices-list">

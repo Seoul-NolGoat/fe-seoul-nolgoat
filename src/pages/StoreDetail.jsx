@@ -19,7 +19,7 @@ import { UserContext } from '../contexts/UserContext';
 import { Gallery, Item } from 'react-photoswipe-gallery';
 import 'photoswipe/dist/photoswipe.css';
 import RoadViewModal from '../components/RoadViewModal'; 
-import { format } from 'date-fns';
+import { formatTimeAgo } from '../components/DateFormatter';
 
 const { kakao } = window;
 
@@ -149,10 +149,6 @@ const StoreDetail = () => {
   const closeRoadViewModal = () => {
     setIsRoadViewModalOpen(false);
   };
-
-  const formatToDate = (isoDate) => {
-    return format(new Date(isoDate), "yyyy-MM-dd"); 
-  };
   
   if (isLoading) {
     return <div>Loading...</div>;
@@ -237,7 +233,7 @@ const StoreDetail = () => {
                           <ReviewHeader>
                             <ReviewNickname>{review.userNickname}</ReviewNickname>
                             <ReviewSeparator></ReviewSeparator>
-                            <ReviewDate>{formatToDate(review.createDate)}</ReviewDate>
+                            <ReviewDate>{formatTimeAgo(review.createDate)}</ReviewDate>
                           </ReviewHeader>
                           {userProfile.userId === review.userId && (
                             <ReviewOptions>

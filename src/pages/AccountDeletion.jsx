@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axiosInstance from '../services/axiosInstance';
+import Container from "../components/common/Container"
 
 const AccountDeletion = ({ handleAccountDeletion }) => {
   const [showVerification, setShowVerification] = useState(false);
@@ -117,13 +118,8 @@ const AccountDeletion = ({ handleAccountDeletion }) => {
   );
 };
 
-const Container = styled.div`
-  max-width: 480px;
-  margin: 0 auto;
-  padding: 40px;
-`;
-
 const Title = styled.h1`
+  margin: 20px 0;
   font-size: 24px;
   font-weight: bold;
   color: #333;
@@ -132,6 +128,8 @@ const Title = styled.h1`
 `;
 
 const Card = styled.div`
+  width: calc(100% - 40px);
+  margin: 0 20px;
   padding: 25px 0;
   border-radius: 12px;
 `;
@@ -139,7 +137,8 @@ const Card = styled.div`
 const WarningText = styled.p`
   margin-bottom: 24px;
   color: #e74c3c;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: bold;
   text-align: left;
   line-height: 1.6;
 `;

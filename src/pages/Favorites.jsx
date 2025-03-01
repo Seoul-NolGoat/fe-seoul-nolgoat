@@ -5,6 +5,7 @@ import { UserContext } from '../contexts/UserContext';
 import starIconBlue from '../assets/store-detail-icons/star-blue.png'; 
 import moreIcon from '../assets/store-detail-icons/three-dots.png'; 
 import { useNavigate } from 'react-router-dom';
+import Container from "../components/common/Container"
 
 const Favorites = () => {
   const { userProfile } = useContext(UserContext);
@@ -87,37 +88,20 @@ const Favorites = () => {
   );
 
   return (
-    <FavoritesWrapper>
-      <FavoritesContainer>
-        <Title>즐겨찾기</Title>
-        <FilterMenu>
-          <FilterButton className={selectedCategory === 'ALL' ? 'active' : ''} onClick={() => setSelectedCategory('ALL')}>전체</FilterButton>
-          <FilterButton className={selectedCategory === 'RESTAURANT' ? 'active' : ''} onClick={() => setSelectedCategory('RESTAURANT')}>음식점</FilterButton>
-          <FilterButton className={selectedCategory === 'CAFE' ? 'active' : ''} onClick={() => setSelectedCategory('CAFE')}>카페</FilterButton>
-          <FilterButton className={selectedCategory === 'PCROOM' ? 'active' : ''} onClick={() => setSelectedCategory('PCROOM')}>PC방</FilterButton>
-          <FilterButton className={selectedCategory === 'KARAOKE' ? 'active' : ''} onClick={() => setSelectedCategory('KARAOKE')}>노래방</FilterButton>
-          <FilterButton className={selectedCategory === 'BILLIARD' ? 'active' : ''} onClick={() => setSelectedCategory('BILLIARD')}>당구장</FilterButton>
-        </FilterMenu>
-        {bookmarkedStores.length > 0 ? renderStoreList(filterStores()) : <p>즐겨찾기 목록이 없습니다.</p>}
-      </FavoritesContainer>
-    </FavoritesWrapper>
+    <Container padding="10px">
+      <Title>즐겨찾기</Title>
+      <FilterMenu>
+        <FilterButton className={selectedCategory === 'ALL' ? 'active' : ''} onClick={() => setSelectedCategory('ALL')}>전체</FilterButton>
+        <FilterButton className={selectedCategory === 'RESTAURANT' ? 'active' : ''} onClick={() => setSelectedCategory('RESTAURANT')}>음식점</FilterButton>
+        <FilterButton className={selectedCategory === 'CAFE' ? 'active' : ''} onClick={() => setSelectedCategory('CAFE')}>카페</FilterButton>
+        <FilterButton className={selectedCategory === 'PCROOM' ? 'active' : ''} onClick={() => setSelectedCategory('PCROOM')}>PC방</FilterButton>
+        <FilterButton className={selectedCategory === 'KARAOKE' ? 'active' : ''} onClick={() => setSelectedCategory('KARAOKE')}>노래방</FilterButton>
+        <FilterButton className={selectedCategory === 'BILLIARD' ? 'active' : ''} onClick={() => setSelectedCategory('BILLIARD')}>당구장</FilterButton>
+      </FilterMenu>
+      {bookmarkedStores.length > 0 ? renderStoreList(filterStores()) : <p>즐겨찾기 목록이 없습니다.</p>}
+  </Container>
   );
 };
-
-const FavoritesWrapper = styled.div`
-  padding: 0;
-  background-color: #ffffff; 
-`;
-
-const FavoritesContainer = styled.div`
-  width: 100%;
-  margin: 0 auto;
-  padding: 10px 10px;
-  border-radius: none;
-  background-color: #ffffff;
-  box-shadow: none;
-  box-sizing: border-box;
-`;
 
 const Title = styled.h2`
   margin-bottom: 20px; 
@@ -200,7 +184,7 @@ const FavoriteIcon = styled.img`
   width: 19px;
   height: 19px;
   margin-right: 15px;
-  margin-top: 10px;
+  margin-top: 8px;
 `;
 
 const FavoriteInfo = styled.div`
@@ -210,7 +194,7 @@ const FavoriteInfo = styled.div`
 `;
 
 const FavoriteName = styled.span`
-  margin-bottom: 5px;
+  margin-bottom: 7px;
   font-weight: bold;
   font-size: 15px;
   text-align: left;

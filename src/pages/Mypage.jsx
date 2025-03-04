@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../contexts/UserContext';
+import Container from "../components/common/Container"
 
 const Mypage = ({ handleLogout }) => {
   const { userProfile } = useContext(UserContext);
@@ -60,14 +61,6 @@ const Mypage = ({ handleLogout }) => {
     </Container>
   );
 };
-
-// 스타일 컴포넌트
-const Container = styled.div`
-  max-width: 480px;
-  margin: 0 auto;
-  padding: 20px;
-  font-family: 'Nanum Gothic', sans-serif;
-`;
 
 const ProfileCard = styled.div`
   margin-bottom: 16px;

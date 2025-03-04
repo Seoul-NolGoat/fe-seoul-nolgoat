@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { UserContext } from '../contexts/UserContext'; 
 import { useNavigate } from 'react-router-dom'; 
+import Container from "../components/common/Container"
 
 import ShopImage from '../assets/home-icons/shop.png';      
 import CombineImage from '../assets/home-icons/combine.png'; 
@@ -12,7 +13,7 @@ const HomePage = () => {
   const navigate = useNavigate(); 
 
   return (
-    <HomeContainer>
+    <Container>
       <WelcomeCard>
         <p>{userProfile.nickname}님 환영합니다!</p>
       </WelcomeCard>
@@ -46,23 +47,18 @@ const HomePage = () => {
           공지 / 게시판
         </Button>
       </ButtonContainer>
-    </HomeContainer>
+    </Container>
   );
 };
 
-
-const HomeContainer = styled.div`
-  margin-top: 10px;
-  padding: 20px;
-`;
-
 const WelcomeCard = styled.div`
+  margin-top: 10px;
   margin-bottom: 20px;
   padding: 15px;
   border-radius: 8px;
   background-color: #eaf4ff;
   text-align: center;
-  font-size: 18px;
+  font-size: 19px;
   font-weight: bold;
   color: #007bff;
 `;
@@ -99,7 +95,7 @@ const MenuItem = styled.div`
 const Image = styled.img`
   width: 50px;
   height: 50px;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 `;
 
 const ButtonContainer = styled.div`
@@ -110,7 +106,7 @@ const ButtonContainer = styled.div`
 
 const Button = styled.div`
   width: 35%;
-  padding: 10px 20px;
+  padding: 12px 20px;
   border: 1px solid #ddd;
   border-radius: 8px;
   display: flex;

@@ -39,9 +39,6 @@ const TabPageContainer = styled.div`
   width: 100%;
   margin: 0 auto;
   padding: 10px 0px;
-  border-radius: 8px;
-  background-color: #ffffff;
-  box-shadow: none;
   box-sizing: border-box;
 `;
 

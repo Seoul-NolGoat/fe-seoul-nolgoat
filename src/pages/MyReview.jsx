@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import axiosInstance from '../services/axiosInstance';
 import StarRating from '../components/StarRating';
+import Container from "../components/common/Container"
 
 const MyReview = () => {
   const [reviews, setReviews] = useState([]);
@@ -101,16 +102,8 @@ const MyReview = () => {
   );
 };
 
-const Container = styled.div`
-  width: 100%;
-  margin: 0 auto 0;
-  padding: 0 20px;
-  font-family: 'Nanum Gothic', sans-serif;
-  box-sizing: border-box;
-`;
-
 const Title = styled.h1`
-  margin: 20px;
+  margin: 0 0 20px 0;
   font-size: 24px;
   font-weight: bold;
   text-align: center;

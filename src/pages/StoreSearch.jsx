@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom'; 
 import axiosInstance from '../services/axiosInstance';
+import Container from "../components/common/Container"
 import kakaoIcon from '../assets/route-result-icons/kakao.png';
 import nolgoatIcon from '../assets/route-result-icons/nolgoat.png';
 
@@ -78,7 +79,7 @@ const StoreSearch = () => {
   };
 
   return (
-    <Container>
+    <Container padding="0px">
       <SearchContainer>
         <SearchBar isFocused={isFocused}>
           <SearchInput
@@ -129,14 +130,6 @@ const StoreSearch = () => {
     </Container>
   );
 };
-
-const Container = styled.div`
-  width: 100%;
-  margin: 0px auto 0;
-  padding: 0px;
-  font-family: 'Nanum Gothic', sans-serif;
-  box-sizing: border-box;
-`;
 
 const SearchContainer = styled.div`
   position: fixed; 
